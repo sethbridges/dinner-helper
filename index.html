@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f3e9">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Dinner, Please">
+  <meta name="format-detection" content="telephone=no">
+  <title>Dinner, Please</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" href="icon-192.png">
+  <style>
+    :root {
+      --ink: #20332d;
+      --muted: #65746f;
+      --paper: #f7f3e9;
+      --card: #fffdf8;
+      --green: #285f4b;
+      --green-dark: #194333;
+      --sage: #dbe7dc;
+      --orange: #e66a3c;
+      --orange-soft: #f8ddd0;
+      --yellow: #f4c95d;
+      --line: rgba(32, 51, 45, .13);
+      --shadow: 0 14px 40px rgba(41, 55, 48, .10);
+    }
+
+    * { box-sizing: border-box; }
+    html { background: var(--paper); }
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 100% 0, rgba(244,201,93,.32), transparent 33%),
+        radial-gradient(circle at -5% 28%, rgba(219,231,220,.9), transparent 30%),
+        var(--paper);
+      font-family: ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button { font: inherit; }
+    button:focus-visible { outline: 3px solid rgba(230,106,60,.38); outline-offset: 2px; }
+
+    .app {
+      width: min(100%, 560px);
+      min-height: 100dvh;
+      margin: 0 auto;
+      padding: calc(22px + env(safe-area-inset-top)) 18px calc(100px + env(safe-area-inset-bottom));
+    }
+
+    header { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+    .eyebrow {
+      margin: 0 0 5px;
+      color: var(--orange);
+      font-size: 12px;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    h1 { margin: 0; font-family: Georgia, "Times New Roman", serif; font-size: clamp(32px, 10vw, 46px); line-height: .98; letter-spacing: -.035em; }
+    .header-button {
+      width: 45px; height: 45px; flex: 0 0 45px; border: 1px solid var(--line); border-radius: 50%;
+      background: rgba(255,253,248,.78); color: var(--ink); font-size: 21px; box-shadow: 0 8px 24px rgba(41,55,48,.07);
+    }
+
+    .intro { margin: 18px 0 24px; max-width: 37ch; color: var(--muted); font-size: 16px; line-height: 1.48; }
+    .section-label { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 11px; }
+    .section-label h2 { margin: 0; font-size: 17px; letter-spacing: -.01em; }
+    .section-label span { color: var(--muted); font-size: 12px; }
+
+    .protein-grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 9px; }
+    .protein {
+      min-height: 54px; padding: 10px 13px; border: 1px solid var(--line); border-radius: 16px;
+      background: rgba(255,253,248,.78); color: var(--ink); text-align: left; font-weight: 750;
+      display: flex; align-items: center; gap: 9px; transition: transform .12s ease, background .12s ease, border .12s ease;
+    }
+    .protein:active { transform: scale(.98); }
+    .protein .emoji { font-size: 21px; }
+    .protein.selected { background: var(--green); border-color: var(--green); color: white; box-shadow: 0 8px 20px rgba(40,95,75,.18); }
+    .protein.none { grid-column: 1 / -1; justify-content: center; background: var(--orange-soft); border-color: rgba(230,106,60,.22); color: #7d351f; }
+    .protein.none.selected { color: white; background: var(--orange); border-color: var(--orange); }
+
+    .inspire {
+      width: 100%; min-height: 58px; margin: 16px 0 24px; border: 0; border-radius: 18px;
+      background: var(--green); color: white; font-size: 17px; font-weight: 850; letter-spacing: -.01em;
+      box-shadow: 0 12px 26px rgba(40,95,75,.23); transition: transform .12s ease, opacity .12s ease;
+    }
+    .inspire:active { transform: translateY(1px) scale(.99); }
+    .inspire:disabled { opacity: .42; box-shadow: none; }
+
+    .today {
+      display: none; margin: 0 0 18px; padding: 14px 15px; border: 1px solid rgba(40,95,75,.14); border-radius: 17px;
+      background: var(--sage); align-items: center; justify-content: space-between; gap: 14px;
+    }
+    .today.visible { display: flex; }
+    .today small { display:block; color: var(--green); font-weight: 800; text-transform: uppercase; letter-spacing: .08em; font-size: 10px; }
+    .today strong { display:block; margin-top: 2px; font-size: 15px; }
+    .today button { border: 0; background: transparent; color: var(--green); font-weight: 800; white-space: nowrap; }
+
+    .results { display: grid; gap: 12px; }
+    .empty {
+      padding: 28px 19px; border: 1px dashed rgba(32,51,45,.22); border-radius: 22px; color: var(--muted);
+      background: rgba(255,253,248,.5); text-align: center; line-height: 1.45;
+    }
+    .empty .big { display:block; margin-bottom: 8px; font-size: 30px; }
+
+    .meal-card {
+      position: relative; overflow: hidden; padding: 19px; border: 1px solid var(--line); border-radius: 23px;
+      background: var(--card); box-shadow: var(--shadow); animation: rise .28s ease both;
+    }
+    .meal-card:nth-child(2) { animation-delay: .04s; }
+    .meal-card:nth-child(3) { animation-delay: .08s; }
+    @keyframes rise { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform:none; } }
+    .meal-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
+    .meal-number { color: var(--orange); font-family: Georgia, serif; font-size: 14px; font-style: italic; }
+    .meal-card h3 { margin: 4px 0 7px; font-family: Georgia, "Times New Roman", serif; font-size: 24px; line-height: 1.1; letter-spacing: -.025em; }
+    .meal-card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.42; }
+    .tags { display:flex; flex-wrap:wrap; gap:6px; margin: 13px 0 16px; }
+    .tag { padding: 5px 8px; border-radius: 999px; background: #f0eee6; color: #596660; font-size: 11px; font-weight: 750; }
+    .tag.readiness { background: var(--orange-soft); color: #8b4028; }
+    .card-actions { display:grid; grid-template-columns: 1fr auto; gap: 8px; }
+    .choose, .mute { min-height: 46px; border-radius: 14px; font-weight: 850; }
+    .choose { border: 0; background: var(--green); color: white; padding: 10px 14px; }
+    .mute { border: 1px solid var(--line); background: white; color: var(--muted); padding: 10px 13px; }
+
+    .toast {
+      position: fixed; z-index: 10; left: 50%; bottom: calc(88px + env(safe-area-inset-bottom)); transform: translate(-50%, 18px);
+      width: max-content; max-width: calc(100% - 36px); padding: 11px 15px; border-radius: 999px; background: var(--ink); color: white;
+      font-size: 13px; font-weight: 750; opacity:0; pointer-events:none; transition: .2s ease;
+    }
+    .toast.show { opacity:1; transform: translate(-50%, 0); }
+
+    .history { display:none; }
+    .history.active { display:block; }
+    .picker.hidden { display:none; }
+    .history-head { margin: 22px 0 16px; }
+    .history-head h2 { margin:0 0 4px; font-family: Georgia, serif; font-size: 30px; }
+    .history-head p { margin:0; color:var(--muted); font-size:14px; }
+    .history-group { margin-top:24px; }
+    .history-group h3 { margin:0 0 9px; font-size:14px; text-transform:uppercase; letter-spacing:.08em; color:var(--muted); }
+    .history-list { display:grid; gap:8px; }
+    .history-row { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:13px 14px; border:1px solid var(--line); border-radius:15px; background:rgba(255,253,248,.78); }
+    .history-row strong { display:block; font-size:14px; }
+    .history-row small { color:var(--muted); font-size:11px; }
+    .history-row button { border:0; background:transparent; color:var(--orange); font-weight:800; font-size:12px; }
+    .clear-all { width:100%; margin-top:25px; padding:13px; border:1px solid rgba(180,60,40,.2); border-radius:14px; color:#a33c2c; background:#fff5f1; font-weight:800; }
+
+    nav {
+      position:fixed; z-index:5; left:50%; bottom:0; transform:translateX(-50%); width:min(100%,560px);
+      display:grid; grid-template-columns:1fr 1fr; padding:9px 18px calc(9px + env(safe-area-inset-bottom));
+      background:rgba(247,243,233,.91); border-top:1px solid rgba(32,51,45,.09); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
+    }
+    nav button { min-height:48px; border:0; border-radius:15px; background:transparent; color:var(--muted); font-weight:800; }
+    nav button.active { background:var(--sage); color:var(--green-dark); }
+
+    @media (min-width: 480px) { .protein-grid { grid-template-columns: repeat(3, 1fr); } .protein.none { grid-column:auto; } }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation:none !important; transition:none !important; } }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <header>
+      <div><p class="eyebrow">Family dinner picker</p><h1>Dinner,<br>Please.</h1></div>
+      <button class="header-button" id="historyShortcut" aria-label="Open meal history">↻</button>
+    </header>
+
+    <section class="picker" id="picker">
+      <p class="intro">Tell me what’s available. I’ll skip anything you made in the last two weeks—or muted for this week.</p>
+      <div class="section-label"><h2>What protein do you have?</h2><span>Choose all that apply</span></div>
+      <div class="protein-grid" id="proteinGrid">
+        <button class="protein" data-protein="chicken"><span class="emoji">🍗</span>Chicken</button>
+        <button class="protein" data-protein="beef"><span class="emoji">🥩</span>Beef</button>
+        <button class="protein" data-protein="pork"><span class="emoji">🥓</span>Pork / sausage</button>
+        <button class="protein" data-protein="seafood"><span class="emoji">🐟</span>Seafood</button>
+        <button class="protein" data-protein="vegetarian"><span class="emoji">🥦</span>Vegetarian</button>
+        <button class="protein none" data-protein="none"><span class="emoji">🤷</span>No protein ready</button>
+      </div>
+      <button class="inspire" id="inspire" disabled>Show me dinner ideas</button>
+      <div class="today" id="today"></div>
+      <section class="results" id="results" aria-live="polite">
+        <div class="empty"><span class="big">🍽️</span>Your ideas will appear here.</div>
+      </section>
+    </section>
+
+    <section class="history" id="history">
+      <div class="history-head"><h2>Your rotation</h2><p>Selections are hidden for 14 days. Mutes last 7 days.</p></div>
+      <div class="history-group"><h3>Recently made</h3><div class="history-list" id="madeList"></div></div>
+      <div class="history-group"><h3>Muted</h3><div class="history-list" id="mutedList"></div></div>
+      <button class="clear-all" id="clearAll">Clear all saved meal data</button>
+    </section>
+  </main>
+
+  <nav aria-label="App sections">
+    <button class="active" data-view="picker">Tonight</button>
+    <button data-view="history">History</button>
+  </nav>
+  <div class="toast" id="toast" role="status"></div>
+
+  <script>
+    const DAY = 86400000;
+    const meals = [
+      {id:'greek-salad-chicken',n:'Greek salad with chicken',p:['chicken'],d:'Chicken, crisp vegetables, feta and dressing.',t:['fresh','component-friendly']},
+      {id:'greek-chicken-hummus',n:'Greek chicken with hummus',p:['chicken'],d:'Seasoned chicken thighs, hummus, pita and vegetables.',t:['chicken thighs','build-your-own'],f:1},
+      {id:'shawarma-bowls',n:'Chicken shawarma bowls',p:['chicken'],d:'Spiced chicken, rice, hummus, pita, cucumbers and sauces.',t:['chicken thighs','build-your-own'],f:1},
+      {id:'halal-cart',n:'Halal-cart chicken bowls',p:['chicken'],d:'Spiced chicken, yellow rice, lettuce, pita and white sauce.',t:['chicken thighs','rice bowl'],f:1},
+      {id:'chicken-katsu',n:'Chicken katsu',p:['chicken'],d:'Crispy chicken cutlets, rice, cabbage and tonkatsu sauce.',t:['crispy','Japanese']},
+      {id:'chicken-piccata',n:'Chicken piccata',p:['chicken'],d:'Thin chicken cutlets with lemon-butter-caper sauce and pasta.',t:['stovetop','bright']},
+      {id:'indian-chicken',n:'Indian chicken night',p:['chicken'],d:'Choose butter chicken or chicken tikka masala with rice and naan.',t:['chicken thighs','rotation'],f:1},
+      {id:'thai-curry',n:'Thai curry',p:['chicken'],d:'Panang or another Thai curry with chicken thighs and rice.',t:['chicken thighs','one-pot'],f:1},
+      {id:'lemongrass-chicken',n:'Vietnamese lemongrass chicken',p:['chicken'],d:'Caramelized lemongrass chicken thighs with rice and cucumbers.',t:['chicken thighs','rice bowl'],f:1},
+      {id:'jerk-chicken',n:'Jerk chicken plates',p:['chicken'],d:'Spicy grilled chicken thighs with rice and beans.',t:['chicken thighs','grill'],f:1},
+      {id:'peri-peri',n:'Peri-peri chicken',p:['chicken'],d:'Spicy, tangy roasted chicken thighs with crispy potatoes.',t:['chicken thighs','sheet pan'],f:1},
+      {id:'chicken-bacon-ranch',n:'Chicken bacon ranch sandwiches',p:['chicken','pork'],d:'Grilled chicken thighs, bacon, cheese and ranch on toasted rolls.',t:['sandwich','crowd-pleaser'],f:1},
+      {id:'fried-chicken',n:'Fried chicken',p:['chicken'],d:'Crispy fried chicken with simple sides.',t:['crispy','project']},
+      {id:'cajun-parm-pasta',n:'Cajun Parmesan chicken pasta',p:['chicken'],d:'Creamy Cajun chicken pasta with plenty of Parmesan.',t:['pasta','creamy'],f:1},
+      {id:'chicken-salad',n:'Chicken salad',p:['chicken'],d:'Chicken salad served as sandwiches, wraps or a composed plate.',t:['cold','easy']},
+      {id:'chicken-salad-melt',n:'Chicken salad melts',p:['chicken'],d:'Chicken salad and melted cheese on toasted bread.',t:['sandwich','quick']},
+
+      {id:'italian-beef',n:'Italian beef sandwiches',p:['beef'],d:'Juicy shredded beef, provolone and pepperoncini on rolls.',t:['sandwich','slow-cooked'],f:1},
+      {id:'reubens',n:'Reubens',p:['beef'],d:'Corned beef, Swiss, sauerkraut and dressing on grilled rye.',t:['sandwich','griddled']},
+      {id:'french-dip',n:'French dip sandwiches',p:['beef'],d:'Roast beef and provolone on rolls with hot jus.',t:['sandwich','easy'],f:1},
+      {id:'cheesesteaks',n:'Philly cheesesteaks',p:['beef'],d:'Thin beef, onions and provolone on toasted rolls.',t:['sandwich','griddle'],f:1},
+      {id:'burgers',n:'Burgers',p:['beef'],d:'Classic burgers with everyone’s toppings on the side.',t:['grill','build-your-own'],f:1},
+      {id:'sloppy-joes',n:'Sloppy joes',p:['beef'],d:'Tangy ground beef on toasted buns.',t:['easy','sandwich'],f:1},
+      {id:'steak-au-poivre',n:'Steak au poivre',p:['beef'],d:'Seared steak with peppercorn cream sauce and fries.',t:['steak','special']},
+      {id:'short-ribs',n:'Braised short ribs',p:['beef'],d:'Slow-braised beef with mashed potatoes and salad.',t:['slow-cooked','comfort']},
+      {id:'meatloaf',n:'Meatloaf',p:['beef'],d:'Classic meatloaf with mashed potatoes or roasted vegetables.',t:['comfort','oven'],f:1},
+      {id:'meatballs-pasta',n:'Meatballs and pasta',p:['beef'],d:'Italian meatballs with red sauce and pasta.',t:['Italian','family favorite'],f:1},
+      {id:'stroganoff',n:'Beef stroganoff',p:['beef'],d:'Beef and mushrooms in a creamy sauce over egg noodles.',t:['comfort','stovetop'],f:1},
+      {id:'bolognese',n:'Bolognese',p:['beef','pork'],d:'Slow-simmered meat sauce over pasta.',t:['pasta','batch-friendly'],f:1},
+      {id:'korean-beef',n:'Korean ground-beef bowls',p:['beef'],d:'Sweet-savory ground beef, rice, cucumbers and optional kimchi.',t:['rice bowl','quick'],f:1},
+      {id:'hamburger-helper',n:'Homemade Hamburger Helper',p:['beef'],d:'One-pot cheeseburger macaroni.',t:['one-pot','easy'],f:1},
+      {id:'chili',n:'Chili',p:['beef'],d:'Beef-and-bean chili with toppings on the side.',t:['one-pot','batch-friendly'],f:1},
+      {id:'tamale-pie',n:'Tamale pie',p:['beef'],d:'Seasoned beef filling baked under a cornbread topping.',t:['baked','comfort'],f:1},
+      {id:'carne-asada',n:'Carne asada',p:['beef'],d:'Grilled marinated steak with tortillas, rice or salad.',t:['grill','Mexican']},
+      {id:'steak-quesadilla',n:'Steak quesadillas',p:['beef'],d:'Crisp tortillas filled with steak and melted cheese.',t:['quick','griddled']},
+      {id:'corned-beef',n:'Corned beef dinner',p:['beef'],d:'Corned beef with potatoes, cabbage and mustard.',t:['classic','slow-cooked']},
+      {id:'aloo-keema',n:'Aloo keema matar',p:['beef'],d:'Spiced ground beef with potatoes and peas.',t:['Indian','one-pot'],f:1},
+
+      {id:'arthur-ave',n:'Arthur Avenue sandwiches',p:['pork'],d:'Ground Italian sausage piled onto rolls.',t:['sandwich','sausage'],f:1},
+      {id:'lemongrass-pork-burger',n:'Ginger-garlic-lemongrass pork burgers',p:['pork'],d:'Savory pork burgers with bright Southeast Asian flavors.',t:['burger','grill'],f:1},
+      {id:'caramel-pork',n:'Vietnamese caramel pork bowls',p:['pork'],d:'Sweet-savory ground pork with rice and cucumbers.',t:['rice bowl','quick'],f:1},
+      {id:'pulled-pork',n:'Pulled-pork sandwiches',p:['pork'],d:'Shredded pork with slaw and pickles served separately.',t:['sandwich','batch-friendly'],f:1},
+      {id:'pork-tonkatsu',n:'Pork tonkatsu',p:['pork'],d:'Crispy pork cutlets with rice, cabbage and tonkatsu sauce.',t:['crispy','Japanese']},
+      {id:'bratwurst',n:'Bratwurst plates',p:['pork'],d:'Bratwurst with roasted potatoes, sauerkraut and mustard.',t:['sausage','easy'],f:1},
+      {id:'maxwell-polish',n:'Maxwell Street Polish sandwiches',p:['pork'],d:'Polish sausage, grilled onions, mustard and peppers on rolls.',t:['sandwich','sausage'],f:1},
+      {id:'lentils-kielbasa',n:'Lentils and kielbasa',p:['pork'],d:'Earthy lentils with smoky sausage.',t:['one-pot','hearty'],f:1},
+      {id:'red-beans-rice',n:'Red beans and rice with sausage',p:['pork'],d:'Smoky red beans, sausage and rice.',t:['one-pot','batch-friendly'],f:1},
+      {id:'sausage-ragu',n:'Sausage ragù',p:['pork'],d:'Italian sausage simmered in tomato sauce over rigatoni.',t:['pasta','Italian'],f:1},
+      {id:'blts',n:'BLTs',p:['pork'],d:'Bacon, lettuce and tomato on good toasted bread.',t:['sandwich','no big protein'],z:1},
+
+      {id:'tuna-steaks',n:'Seared tuna steaks',p:['seafood'],d:'Quick-seared tuna with rice, salad or vegetables.',t:['quick','seared']},
+      {id:'poke-bowls',n:'Poke bowls',p:['seafood'],d:'Tuna, rice and customizable toppings and sauces.',t:['cold','build-your-own']},
+      {id:'tuna-melts',n:'Tuna melts',p:['seafood'],d:'Canned tuna salad and melted cheese on toast.',t:['pantry','sandwich'],z:1},
+
+      {id:'taco-night',n:'Taco night',p:['beef','chicken','pork'],d:'Use ground beef, carne asada, pollo asado or chicken thighs.',t:['Mexican','build-your-own'],f:1},
+      {id:'fajita-bowls',n:'Fajita bowls',p:['beef','chicken'],d:'Chicken or steak, rice, peppers and individual toppings.',t:['rice bowl','build-your-own'],f:1},
+      {id:'gyros',n:'Gyros or gyro bowls',p:['beef'],d:'Freezer gyro meat, pita or rice, tzatziki and toppings.',t:['freezer staple','build-your-own'],z:1},
+      {id:'dumplings',n:'Dumplings or gyoza',p:['pork','chicken','vegetarian'],d:'Pan-fried or steamed freezer dumplings with rice and cucumbers.',t:['freezer staple','quick'],z:1},
+      {id:'nachos',n:'Nachos',p:['beef','chicken','vegetarian'],d:'Chips, cheese, beans and whatever toppings are available.',t:['pantry','build-your-own'],z:1},
+      {id:'ramen',n:'Ramen with eggs',p:['vegetarian'],d:'Ramen upgraded with jammy eggs and whatever vegetables are handy.',t:['pantry','quick'],z:1},
+      {id:'pizza',n:'Pizza night',p:['vegetarian'],d:'Make pizza from scratch—or use a frozen pizza when energy is gone.',t:['flexible','freezer option'],z:1},
+      {id:'breakfast-dinner',n:'Breakfast for dinner',p:['vegetarian','pork'],d:'Eggs, toast and potatoes, with bacon or sausage if available.',t:['pantry','quick'],z:1},
+
+      {id:'cauliflower-soup',n:'Cauliflower soup',p:['vegetarian'],d:'Creamy cauliflower soup with toast or grilled cheese.',t:['soup','light'],z:1},
+      {id:'tortilla-soup',n:'Chicken tortilla soup',p:['chicken'],d:'Tomato-chile broth, chicken and crunchy toppings.',t:['soup','toppings'],f:1},
+      {id:'pozole',n:'Pozole',p:['pork','chicken'],d:'Hominy soup with pork or chicken and a full toppings spread.',t:['soup','Mexican'],f:1},
+      {id:'baked-pasta',n:'Baked pasta or baked ziti',p:['beef','pork','vegetarian'],d:'Lasagna-style baked pasta without ricotta.',t:['baked','comfort'],f:1},
+      {id:'vodka-pasta',n:'Pasta alla vodka',p:['chicken','pork','vegetarian'],d:'Creamy tomato pasta with optional chicken or sausage.',t:['pasta','flexible'],f:1},
+      {id:'butter-paneer',n:'Butter paneer',p:['vegetarian'],d:'Paneer in a creamy spiced tomato sauce with rice and naan.',t:['Indian','vegetarian']},
+      {id:'bulgur-salad',n:'Bulgur salad',p:['chicken','beef','seafood','vegetarian'],d:'Add chicken, kofta, steak, salmon, chickpeas or halloumi.',t:['fresh','flexible']},
+      {id:'freezer-dinner',n:'Freezer dinner',p:['chicken','seafood','vegetarian'],d:'Chicken nuggets, corn dogs, fish sticks and mozzarella sticks.',t:['zero effort','freezer'],z:1}
+    ];
+
+    const COOKIE_HISTORY = 'dinner_please_history_v1';
+    const COOKIE_MUTES = 'dinner_please_mutes_v1';
+    const COOKIE_PATH = location.pathname.endsWith('/') ? location.pathname : (location.pathname.replace(/[^/]+$/, '') || '/');
+    const selected = new Set();
+    let shownIds = [];
+
+    function readCookie(name, fallback) {
+      const hit = document.cookie.split('; ').find(row => row.startsWith(name + '='));
+      if (!hit) return fallback;
+      try { return JSON.parse(decodeURIComponent(hit.slice(name.length + 1))); } catch { return fallback; }
+    }
+
+    function writeCookie(name, value) {
+      const expires = new Date(Date.now() + 400 * DAY).toUTCString();
+      document.cookie = `${name}=${encodeURIComponent(JSON.stringify(value))}; expires=${expires}; path=${COOKIE_PATH}; SameSite=Strict; Secure`;
+    }
+
+    function historyData() {
+      return readCookie(COOKIE_HISTORY, []).filter(x => x && x.i && Number.isFinite(x.t));
+    }
+    function muteData() {
+      const data = readCookie(COOKIE_MUTES, {});
+      return data && typeof data === 'object' && !Array.isArray(data) ? data : {};
+    }
+    function prune() {
+      const history = historyData().filter(x => Date.now() - x.t < 45 * DAY).slice(-40);
+      const mutes = muteData();
+      Object.keys(mutes).forEach(id => { if (mutes[id] <= Date.now()) delete mutes[id]; });
+      writeCookie(COOKIE_HISTORY, history);
+      writeCookie(COOKIE_MUTES, mutes);
+      return {history, mutes};
+    }
+    function mealById(id) { return meals.find(m => m.id === id); }
+    function formatDate(ts) { return new Intl.DateTimeFormat(undefined,{month:'short',day:'numeric'}).format(new Date(ts)); }
+    function escapeHtml(value) { return String(value).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c])); }
+
+    function randomize(array) {
+      const result = [...array];
+      for (let i = result.length - 1; i > 0; i--) {
+        const random = new Uint32Array(1); crypto.getRandomValues(random);
+        const j = random[0] % (i + 1); [result[i], result[j]] = [result[j], result[i]];
+      }
+      return result;
+    }
+
+    function eligibleMeals() {
+      const {history, mutes} = prune();
+      const recent = new Set(history.filter(x => Date.now() - x.t < 14 * DAY).map(x => x.i));
+      const noProtein = selected.has('none');
+      return meals.filter(meal => {
+        if (recent.has(meal.id) || mutes[meal.id] > Date.now()) return false;
+        if (noProtein) return meal.z === 1 || meal.f === 1;
+        return meal.p.some(protein => selected.has(protein));
+      });
+    }
+
+    function showIdeas() {
+      const all = eligibleMeals();
+      const fresh = randomize(all.filter(m => !shownIds.includes(m.id)));
+      const seen = randomize(all.filter(m => shownIds.includes(m.id)));
+      const picks = [...fresh, ...seen].slice(0, 3);
+      shownIds = picks.map(x => x.id);
+      renderResults(picks);
+      if (picks.length) document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
+    }
+
+    function readiness(meal) {
+      if (!selected.has('none')) return '';
+      if (meal.z) return 'No thaw needed';
+      if (meal.f) return 'Defrost a staple';
+      return '';
+    }
+
+    function renderResults(picks) {
+      const results = document.getElementById('results');
+      if (!picks.length) {
+        results.innerHTML = '<div class="empty"><span class="big">🫙</span>No eligible meals remain for this selection. Try another protein, or undo something in History.</div>';
+        return;
+      }
+      results.innerHTML = picks.map((m,i) => {
+        const ready = readiness(m);
+        return `<article class="meal-card">
+          <div class="meal-top"><div><span class="meal-number">Idea ${i+1}</span><h3>${escapeHtml(m.n)}</h3></div></div>
+          <p>${escapeHtml(m.d)}</p>
+          <div class="tags">${ready ? `<span class="tag readiness">${ready}</span>` : ''}${m.t.map(t=>`<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>
+          <div class="card-actions"><button class="choose" data-action="choose" data-id="${m.id}">I’ll make this</button><button class="mute" data-action="mute" data-id="${m.id}">Mute 7 days</button></div>
+        </article>`;
+      }).join('');
+    }
+
+    function chooseMeal(id) {
+      const history = historyData();
+      history.push({i:id,t:Date.now()}); writeCookie(COOKIE_HISTORY, history.slice(-40));
+      const mutes = muteData(); delete mutes[id]; writeCookie(COOKIE_MUTES, mutes);
+      renderToday(); toast('Dinner chosen — hidden for 14 days'); showIdeas();
+    }
+
+    function muteMeal(id) {
+      const mutes = muteData(); mutes[id] = Date.now() + 7 * DAY; writeCookie(COOKIE_MUTES, mutes);
+      toast('Muted for 7 days'); showIdeas();
+    }
+
+    function renderToday() {
+      const history = historyData();
+      const todayStart = new Date(); todayStart.setHours(0,0,0,0);
+      const last = [...history].reverse().find(x => x.t >= todayStart.getTime());
+      const box = document.getElementById('today');
+      if (!last || !mealById(last.i)) { box.className='today'; box.innerHTML=''; return; }
+      box.className='today visible';
+      box.innerHTML=`<div><small>Tonight’s plan</small><strong>${escapeHtml(mealById(last.i).n)}</strong></div><button data-undo-timestamp="${last.t}">Undo</button>`;
+    }
+
+    function renderHistory() {
+      const {history,mutes}=prune();
+      const made = [...history].reverse();
+      document.getElementById('madeList').innerHTML = made.length ? made.map(x => {
+        const meal=mealById(x.i); if(!meal) return '';
+        return `<div class="history-row"><div><strong>${escapeHtml(meal.n)}</strong><small>Made ${formatDate(x.t)}</small></div><button data-remove-history="${x.t}">Undo</button></div>`;
+      }).join('') : '<div class="empty">Nothing recorded yet.</div>';
+      const active = Object.entries(mutes).filter(([,until])=>until>Date.now()).sort((a,b)=>a[1]-b[1]);
+      document.getElementById('mutedList').innerHTML = active.length ? active.map(([id,until]) => {
+        const meal=mealById(id); if(!meal) return '';
+        return `<div class="history-row"><div><strong>${escapeHtml(meal.n)}</strong><small>Until ${formatDate(until)}</small></div><button data-unmute="${id}">Unmute</button></div>`;
+      }).join('') : '<div class="empty">Nothing muted.</div>';
+    }
+
+    function removeHistory(timestamp) {
+      writeCookie(COOKIE_HISTORY, historyData().filter(x=>x.t!==Number(timestamp))); renderToday(); renderHistory(); toast('Selection removed');
+    }
+    function unmute(id) { const m=muteData(); delete m[id]; writeCookie(COOKIE_MUTES,m); renderHistory(); toast('Meal unmuted'); }
+
+    function switchView(view) {
+      const isHistory=view==='history';
+      document.getElementById('picker').classList.toggle('hidden',isHistory);
+      document.getElementById('history').classList.toggle('active',isHistory);
+      document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===view));
+      if(isHistory) renderHistory(); window.scrollTo({top:0,behavior:'smooth'});
+    }
+
+    let toastTimer;
+    function toast(message) {
+      const el=document.getElementById('toast'); el.textContent=message; el.classList.add('show');
+      clearTimeout(toastTimer); toastTimer=setTimeout(()=>el.classList.remove('show'),2200);
+    }
+
+    document.getElementById('proteinGrid').addEventListener('click', event => {
+      const button=event.target.closest('[data-protein]'); if(!button) return;
+      const protein=button.dataset.protein;
+      if(protein==='none') { selected.clear(); selected.add('none'); }
+      else { selected.delete('none'); selected.has(protein) ? selected.delete(protein) : selected.add(protein); }
+      document.querySelectorAll('[data-protein]').forEach(b=>b.classList.toggle('selected',selected.has(b.dataset.protein)));
+      document.getElementById('inspire').disabled=selected.size===0;
+      shownIds=[];
+    });
+    document.getElementById('inspire').addEventListener('click',showIdeas);
+    document.getElementById('results').addEventListener('click', event => {
+      const button=event.target.closest('[data-action]'); if(!button) return;
+      button.dataset.action==='choose' ? chooseMeal(button.dataset.id) : muteMeal(button.dataset.id);
+    });
+    document.getElementById('today').addEventListener('click',e=>{const b=e.target.closest('[data-undo-timestamp]');if(b)removeHistory(b.dataset.undoTimestamp);});
+    document.getElementById('history').addEventListener('click',e=>{
+      const h=e.target.closest('[data-remove-history]'); const m=e.target.closest('[data-unmute]');
+      if(h) removeHistory(h.dataset.removeHistory); if(m) unmute(m.dataset.unmute);
+    });
+    document.querySelectorAll('nav button').forEach(b=>b.addEventListener('click',()=>switchView(b.dataset.view)));
+    document.getElementById('historyShortcut').addEventListener('click',()=>switchView('history'));
+    document.getElementById('clearAll').addEventListener('click',()=>{
+      if(!confirm('Clear all meal history and mutes?')) return;
+      writeCookie(COOKIE_HISTORY,[]); writeCookie(COOKIE_MUTES,{}); renderHistory(); renderToday(); toast('Saved meal data cleared');
+    });
+
+    prune(); renderToday();
+    if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
+  </script>
+</body>
+</html>
