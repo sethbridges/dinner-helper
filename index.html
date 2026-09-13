@@ -84,6 +84,11 @@
     .protein.selected { background: var(--green); border-color: var(--green); color: white; box-shadow: 0 8px 20px rgba(40,95,75,.18); }
     .protein.none { grid-column: 1 / -1; justify-content: center; background: var(--orange-soft); border-color: rgba(230,106,60,.22); color: #7d351f; }
     .protein.none.selected { color: white; background: var(--orange); border-color: var(--orange); }
+    .quick-filter {
+      width: 100%; min-height: 48px; margin-top: 9px; padding: 10px 14px; border: 1px solid rgba(199,145,22,.27);
+      border-radius: 15px; background: rgba(244,201,93,.19); color: #725615; font-weight: 800;
+    }
+    .quick-filter.selected { background: var(--yellow); border-color: var(--yellow); color: var(--ink); }
 
     .inspire {
       width: 100%; min-height: 58px; margin: 16px 0 24px; border: 0; border-radius: 18px;
@@ -180,6 +185,7 @@
         <button class="protein" data-protein="vegetarian"><span class="emoji">🥦</span>Vegetarian</button>
         <button class="protein none" data-protein="none"><span class="emoji">🤷</span>No protein ready</button>
       </div>
+      <button class="quick-filter" id="quickFilter" aria-pressed="false">⚡ Quick meals only</button>
       <button class="inspire" id="inspire" disabled>Show me dinner ideas</button>
       <div class="today" id="today"></div>
       <section class="results" id="results" aria-live="polite">
@@ -203,84 +209,14 @@
 
   <script>
     const DAY = 86400000;
-    const meals = [
-      {id:'greek-salad-chicken',n:'Greek salad with chicken',p:['chicken'],d:'Chicken, crisp vegetables, feta and dressing.',t:['fresh','component-friendly']},
-      {id:'greek-chicken-hummus',n:'Greek chicken with hummus',p:['chicken'],d:'Seasoned chicken thighs, hummus, pita and vegetables.',t:['chicken thighs','build-your-own'],f:1},
-      {id:'shawarma-bowls',n:'Chicken shawarma bowls',p:['chicken'],d:'Spiced chicken, rice, hummus, pita, cucumbers and sauces.',t:['chicken thighs','build-your-own'],f:1},
-      {id:'halal-cart',n:'Halal-cart chicken bowls',p:['chicken'],d:'Spiced chicken, yellow rice, lettuce, pita and white sauce.',t:['chicken thighs','rice bowl'],f:1},
-      {id:'chicken-katsu',n:'Chicken katsu',p:['chicken'],d:'Crispy chicken cutlets, rice, cabbage and tonkatsu sauce.',t:['crispy','Japanese']},
-      {id:'chicken-piccata',n:'Chicken piccata',p:['chicken'],d:'Thin chicken cutlets with lemon-butter-caper sauce and pasta.',t:['stovetop','bright']},
-      {id:'indian-chicken',n:'Indian chicken night',p:['chicken'],d:'Choose butter chicken or chicken tikka masala with rice and naan.',t:['chicken thighs','rotation'],f:1},
-      {id:'thai-curry',n:'Thai curry',p:['chicken'],d:'Panang or another Thai curry with chicken thighs and rice.',t:['chicken thighs','one-pot'],f:1},
-      {id:'lemongrass-chicken',n:'Vietnamese lemongrass chicken',p:['chicken'],d:'Caramelized lemongrass chicken thighs with rice and cucumbers.',t:['chicken thighs','rice bowl'],f:1},
-      {id:'jerk-chicken',n:'Jerk chicken plates',p:['chicken'],d:'Spicy grilled chicken thighs with rice and beans.',t:['chicken thighs','grill'],f:1},
-      {id:'peri-peri',n:'Peri-peri chicken',p:['chicken'],d:'Spicy, tangy roasted chicken thighs with crispy potatoes.',t:['chicken thighs','sheet pan'],f:1},
-      {id:'chicken-bacon-ranch',n:'Chicken bacon ranch sandwiches',p:['chicken','pork'],d:'Grilled chicken thighs, bacon, cheese and ranch on toasted rolls.',t:['sandwich','crowd-pleaser'],f:1},
-      {id:'fried-chicken',n:'Fried chicken',p:['chicken'],d:'Crispy fried chicken with simple sides.',t:['crispy','project']},
-      {id:'cajun-parm-pasta',n:'Cajun Parmesan chicken pasta',p:['chicken'],d:'Creamy Cajun chicken pasta with plenty of Parmesan.',t:['pasta','creamy'],f:1},
-      {id:'chicken-salad',n:'Chicken salad',p:['chicken'],d:'Chicken salad served as sandwiches, wraps or a composed plate.',t:['cold','easy']},
-      {id:'chicken-salad-melt',n:'Chicken salad melts',p:['chicken'],d:'Chicken salad and melted cheese on toasted bread.',t:['sandwich','quick']},
-
-      {id:'italian-beef',n:'Italian beef sandwiches',p:['beef'],d:'Juicy shredded beef, provolone and pepperoncini on rolls.',t:['sandwich','slow-cooked'],f:1},
-      {id:'reubens',n:'Reubens',p:['beef'],d:'Corned beef, Swiss, sauerkraut and dressing on grilled rye.',t:['sandwich','griddled']},
-      {id:'french-dip',n:'French dip sandwiches',p:['beef'],d:'Roast beef and provolone on rolls with hot jus.',t:['sandwich','easy'],f:1},
-      {id:'cheesesteaks',n:'Philly cheesesteaks',p:['beef'],d:'Thin beef, onions and provolone on toasted rolls.',t:['sandwich','griddle'],f:1},
-      {id:'burgers',n:'Burgers',p:['beef'],d:'Classic burgers with everyone’s toppings on the side.',t:['grill','build-your-own'],f:1},
-      {id:'sloppy-joes',n:'Sloppy joes',p:['beef'],d:'Tangy ground beef on toasted buns.',t:['easy','sandwich'],f:1},
-      {id:'steak-au-poivre',n:'Steak au poivre',p:['beef'],d:'Seared steak with peppercorn cream sauce and fries.',t:['steak','special']},
-      {id:'short-ribs',n:'Braised short ribs',p:['beef'],d:'Slow-braised beef with mashed potatoes and salad.',t:['slow-cooked','comfort']},
-      {id:'meatloaf',n:'Meatloaf',p:['beef'],d:'Classic meatloaf with mashed potatoes or roasted vegetables.',t:['comfort','oven'],f:1},
-      {id:'meatballs-pasta',n:'Meatballs and pasta',p:['beef'],d:'Italian meatballs with red sauce and pasta.',t:['Italian','family favorite'],f:1},
-      {id:'stroganoff',n:'Beef stroganoff',p:['beef'],d:'Beef and mushrooms in a creamy sauce over egg noodles.',t:['comfort','stovetop'],f:1},
-      {id:'bolognese',n:'Bolognese',p:['beef','pork'],d:'Slow-simmered meat sauce over pasta.',t:['pasta','batch-friendly'],f:1},
-      {id:'korean-beef',n:'Korean ground-beef bowls',p:['beef'],d:'Sweet-savory ground beef, rice, cucumbers and optional kimchi.',t:['rice bowl','quick'],f:1},
-      {id:'hamburger-helper',n:'Homemade Hamburger Helper',p:['beef'],d:'One-pot cheeseburger macaroni.',t:['one-pot','easy'],f:1},
-      {id:'chili',n:'Chili',p:['beef'],d:'Beef-and-bean chili with toppings on the side.',t:['one-pot','batch-friendly'],f:1},
-      {id:'tamale-pie',n:'Tamale pie',p:['beef'],d:'Seasoned beef filling baked under a cornbread topping.',t:['baked','comfort'],f:1},
-      {id:'carne-asada',n:'Carne asada',p:['beef'],d:'Grilled marinated steak with tortillas, rice or salad.',t:['grill','Mexican']},
-      {id:'steak-quesadilla',n:'Steak quesadillas',p:['beef'],d:'Crisp tortillas filled with steak and melted cheese.',t:['quick','griddled']},
-      {id:'corned-beef',n:'Corned beef dinner',p:['beef'],d:'Corned beef with potatoes, cabbage and mustard.',t:['classic','slow-cooked']},
-      {id:'aloo-keema',n:'Aloo keema matar',p:['beef'],d:'Spiced ground beef with potatoes and peas.',t:['Indian','one-pot'],f:1},
-
-      {id:'arthur-ave',n:'Arthur Avenue sandwiches',p:['pork'],d:'Ground Italian sausage piled onto rolls.',t:['sandwich','sausage'],f:1},
-      {id:'lemongrass-pork-burger',n:'Ginger-garlic-lemongrass pork burgers',p:['pork'],d:'Savory pork burgers with bright Southeast Asian flavors.',t:['burger','grill'],f:1},
-      {id:'caramel-pork',n:'Vietnamese caramel pork bowls',p:['pork'],d:'Sweet-savory ground pork with rice and cucumbers.',t:['rice bowl','quick'],f:1},
-      {id:'pulled-pork',n:'Pulled-pork sandwiches',p:['pork'],d:'Shredded pork with slaw and pickles served separately.',t:['sandwich','batch-friendly'],f:1},
-      {id:'pork-tonkatsu',n:'Pork tonkatsu',p:['pork'],d:'Crispy pork cutlets with rice, cabbage and tonkatsu sauce.',t:['crispy','Japanese']},
-      {id:'bratwurst',n:'Bratwurst plates',p:['pork'],d:'Bratwurst with roasted potatoes, sauerkraut and mustard.',t:['sausage','easy'],f:1},
-      {id:'maxwell-polish',n:'Maxwell Street Polish sandwiches',p:['pork'],d:'Polish sausage, grilled onions, mustard and peppers on rolls.',t:['sandwich','sausage'],f:1},
-      {id:'lentils-kielbasa',n:'Lentils and kielbasa',p:['pork'],d:'Earthy lentils with smoky sausage.',t:['one-pot','hearty'],f:1},
-      {id:'red-beans-rice',n:'Red beans and rice with sausage',p:['pork'],d:'Smoky red beans, sausage and rice.',t:['one-pot','batch-friendly'],f:1},
-      {id:'sausage-ragu',n:'Sausage ragù',p:['pork'],d:'Italian sausage simmered in tomato sauce over rigatoni.',t:['pasta','Italian'],f:1},
-      {id:'blts',n:'BLTs',p:['pork'],d:'Bacon, lettuce and tomato on good toasted bread.',t:['sandwich','no big protein'],z:1},
-
-      {id:'tuna-steaks',n:'Seared tuna steaks',p:['seafood'],d:'Quick-seared tuna with rice, salad or vegetables.',t:['quick','seared']},
-      {id:'poke-bowls',n:'Poke bowls',p:['seafood'],d:'Tuna, rice and customizable toppings and sauces.',t:['cold','build-your-own']},
-      {id:'tuna-melts',n:'Tuna melts',p:['seafood'],d:'Canned tuna salad and melted cheese on toast.',t:['pantry','sandwich'],z:1},
-
-      {id:'taco-night',n:'Taco night',p:['beef','chicken','pork'],d:'Use ground beef, carne asada, pollo asado or chicken thighs.',t:['Mexican','build-your-own'],f:1},
-      {id:'fajita-bowls',n:'Fajita bowls',p:['beef','chicken'],d:'Chicken or steak, rice, peppers and individual toppings.',t:['rice bowl','build-your-own'],f:1},
-      {id:'gyros',n:'Gyros or gyro bowls',p:['beef'],d:'Freezer gyro meat, pita or rice, tzatziki and toppings.',t:['freezer staple','build-your-own'],z:1},
-      {id:'dumplings',n:'Dumplings or gyoza',p:['pork','chicken','vegetarian'],d:'Pan-fried or steamed freezer dumplings with rice and cucumbers.',t:['freezer staple','quick'],z:1},
-      {id:'nachos',n:'Nachos',p:['beef','chicken','vegetarian'],d:'Chips, cheese, beans and whatever toppings are available.',t:['pantry','build-your-own'],z:1},
-      {id:'ramen',n:'Ramen with eggs',p:['vegetarian'],d:'Ramen upgraded with jammy eggs and whatever vegetables are handy.',t:['pantry','quick'],z:1},
-      {id:'pizza',n:'Pizza night',p:['vegetarian'],d:'Make pizza from scratch—or use a frozen pizza when energy is gone.',t:['flexible','freezer option'],z:1},
-      {id:'breakfast-dinner',n:'Breakfast for dinner',p:['vegetarian','pork'],d:'Eggs, toast and potatoes, with bacon or sausage if available.',t:['pantry','quick'],z:1},
-
-      {id:'cauliflower-soup',n:'Cauliflower soup',p:['vegetarian'],d:'Creamy cauliflower soup with toast or grilled cheese.',t:['soup','light'],z:1},
-      {id:'tortilla-soup',n:'Chicken tortilla soup',p:['chicken'],d:'Tomato-chile broth, chicken and crunchy toppings.',t:['soup','toppings'],f:1},
-      {id:'pozole',n:'Pozole',p:['pork','chicken'],d:'Hominy soup with pork or chicken and a full toppings spread.',t:['soup','Mexican'],f:1},
-      {id:'baked-pasta',n:'Baked pasta or baked ziti',p:['beef','pork','vegetarian'],d:'Lasagna-style baked pasta without ricotta.',t:['baked','comfort'],f:1},
-      {id:'vodka-pasta',n:'Pasta alla vodka',p:['chicken','pork','vegetarian'],d:'Creamy tomato pasta with optional chicken or sausage.',t:['pasta','flexible'],f:1},
-      {id:'butter-paneer',n:'Butter paneer',p:['vegetarian'],d:'Paneer in a creamy spiced tomato sauce with rice and naan.',t:['Indian','vegetarian']},
-      {id:'bulgur-salad',n:'Bulgur salad',p:['chicken','beef','seafood','vegetarian'],d:'Add chicken, kofta, steak, salmon, chickpeas or halloumi.',t:['fresh','flexible']},
-      {id:'freezer-dinner',n:'Freezer dinner',p:['chicken','seafood','vegetarian'],d:'Chicken nuggets, corn dogs, fish sticks and mozzarella sticks.',t:['zero effort','freezer'],z:1}
-    ];
+    let meals = [];
+    let mealsLoaded = false;
 
     const COOKIE_HISTORY = 'dinner_please_history_v1';
     const COOKIE_MUTES = 'dinner_please_mutes_v1';
     const COOKIE_PATH = location.pathname.endsWith('/') ? location.pathname : (location.pathname.replace(/[^/]+$/, '') || '/');
     const selected = new Set();
+    let quickOnly = false;
     let shownIds = [];
 
     function readCookie(name, fallback) {
@@ -328,8 +264,10 @@
       const noProtein = selected.has('none');
       return meals.filter(meal => {
         if (recent.has(meal.id) || mutes[meal.id] > Date.now()) return false;
-        if (noProtein) return meal.z === 1 || meal.f === 1;
-        return meal.p.some(protein => selected.has(protein));
+        if (quickOnly && !meal.quick) return false;
+        if (noProtein) return Boolean(meal.noProtein);
+        if (selected.size) return meal.proteins.some(protein => selected.has(protein));
+        return quickOnly;
       });
     }
 
@@ -345,8 +283,8 @@
 
     function readiness(meal) {
       if (!selected.has('none')) return '';
-      if (meal.z) return 'No thaw needed';
-      if (meal.f) return 'Defrost a staple';
+      if (meal.noProtein === 'ready') return 'No thaw needed';
+      if (meal.noProtein === 'defrost') return 'Defrost a staple';
       return '';
     }
 
@@ -359,9 +297,9 @@
       results.innerHTML = picks.map((m,i) => {
         const ready = readiness(m);
         return `<article class="meal-card">
-          <div class="meal-top"><div><span class="meal-number">Idea ${i+1}</span><h3>${escapeHtml(m.n)}</h3></div></div>
-          <p>${escapeHtml(m.d)}</p>
-          <div class="tags">${ready ? `<span class="tag readiness">${ready}</span>` : ''}${m.t.map(t=>`<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>
+          <div class="meal-top"><div><span class="meal-number">Idea ${i+1}</span><h3>${escapeHtml(m.name)}</h3></div></div>
+          <p>${escapeHtml(m.description)}</p>
+          <div class="tags">${ready ? `<span class="tag readiness">${ready}</span>` : ''}${m.quick ? '<span class="tag">⚡ Quick</span>' : ''}${m.tags.map(t=>`<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>
           <div class="card-actions"><button class="choose" data-action="choose" data-id="${m.id}">I’ll make this</button><button class="mute" data-action="mute" data-id="${m.id}">Mute 7 days</button></div>
         </article>`;
       }).join('');
@@ -386,7 +324,7 @@
       const box = document.getElementById('today');
       if (!last || !mealById(last.i)) { box.className='today'; box.innerHTML=''; return; }
       box.className='today visible';
-      box.innerHTML=`<div><small>Tonight’s plan</small><strong>${escapeHtml(mealById(last.i).n)}</strong></div><button data-undo-timestamp="${last.t}">Undo</button>`;
+      box.innerHTML=`<div><small>Tonight’s plan</small><strong>${escapeHtml(mealById(last.i).name)}</strong></div><button data-undo-timestamp="${last.t}">Undo</button>`;
     }
 
     function renderHistory() {
@@ -394,12 +332,12 @@
       const made = [...history].reverse();
       document.getElementById('madeList').innerHTML = made.length ? made.map(x => {
         const meal=mealById(x.i); if(!meal) return '';
-        return `<div class="history-row"><div><strong>${escapeHtml(meal.n)}</strong><small>Made ${formatDate(x.t)}</small></div><button data-remove-history="${x.t}">Undo</button></div>`;
+        return `<div class="history-row"><div><strong>${escapeHtml(meal.name)}</strong><small>Made ${formatDate(x.t)}</small></div><button data-remove-history="${x.t}">Undo</button></div>`;
       }).join('') : '<div class="empty">Nothing recorded yet.</div>';
       const active = Object.entries(mutes).filter(([,until])=>until>Date.now()).sort((a,b)=>a[1]-b[1]);
       document.getElementById('mutedList').innerHTML = active.length ? active.map(([id,until]) => {
         const meal=mealById(id); if(!meal) return '';
-        return `<div class="history-row"><div><strong>${escapeHtml(meal.n)}</strong><small>Until ${formatDate(until)}</small></div><button data-unmute="${id}">Unmute</button></div>`;
+        return `<div class="history-row"><div><strong>${escapeHtml(meal.name)}</strong><small>Until ${formatDate(until)}</small></div><button data-unmute="${id}">Unmute</button></div>`;
       }).join('') : '<div class="empty">Nothing muted.</div>';
     }
 
@@ -428,7 +366,14 @@
       if(protein==='none') { selected.clear(); selected.add('none'); }
       else { selected.delete('none'); selected.has(protein) ? selected.delete(protein) : selected.add(protein); }
       document.querySelectorAll('[data-protein]').forEach(b=>b.classList.toggle('selected',selected.has(b.dataset.protein)));
-      document.getElementById('inspire').disabled=selected.size===0;
+      document.getElementById('inspire').disabled=!mealsLoaded || (selected.size===0 && !quickOnly);
+      shownIds=[];
+    });
+    document.getElementById('quickFilter').addEventListener('click', event => {
+      quickOnly = !quickOnly;
+      event.currentTarget.classList.toggle('selected', quickOnly);
+      event.currentTarget.setAttribute('aria-pressed', String(quickOnly));
+      document.getElementById('inspire').disabled=!mealsLoaded || (selected.size===0 && !quickOnly);
       shownIds=[];
     });
     document.getElementById('inspire').addEventListener('click',showIdeas);
@@ -448,7 +393,28 @@
       writeCookie(COOKIE_HISTORY,[]); writeCookie(COOKIE_MUTES,{}); renderHistory(); renderToday(); toast('Saved meal data cleared');
     });
 
-    prune(); renderToday();
+    async function loadMeals() {
+      try {
+        const response = await fetch('./meals.json', {cache:'no-store'});
+        if (!response.ok) throw new Error(`Meal list returned ${response.status}`);
+        const payload = await response.json();
+        if (!payload || !Array.isArray(payload.meals)) throw new Error('meals.json must contain a meals array');
+        const ids = new Set();
+        for (const meal of payload.meals) {
+          if (!meal.id || !meal.name || !Array.isArray(meal.proteins) || !Array.isArray(meal.tags)) throw new Error('A meal entry is incomplete');
+          if (ids.has(meal.id)) throw new Error(`Duplicate meal id: ${meal.id}`);
+          ids.add(meal.id);
+        }
+        meals = payload.meals;
+        mealsLoaded = true;
+        document.getElementById('inspire').disabled = selected.size === 0 && !quickOnly;
+        prune(); renderToday();
+      } catch (error) {
+        console.error(error);
+        document.getElementById('results').innerHTML = '<div class="empty"><span class="big">⚠️</span>I couldn’t load meals.json. Check that it is valid JSON and uploaded beside index.html.</div>';
+      }
+    }
+    loadMeals();
     if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js'));
   </script>
 </body>

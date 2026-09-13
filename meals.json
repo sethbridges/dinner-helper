@@ -1,0 +1,948 @@
+{
+  "version": 1,
+  "meals": [
+    {
+      "id": "greek-salad-chicken",
+      "name": "Greek salad with chicken",
+      "proteins": [
+        "chicken"
+      ],
+      "description": "Chicken, crisp vegetables, feta and dressing.",
+      "tags": [
+        "fresh",
+        "component-friendly"
+      ],
+      "quick": false,
+      "noProtein": null
+    },
+    {
+      "id": "greek-chicken-hummus",
+      "name": "Greek chicken with hummus",
+      "proteins": [
+        "chicken"
+      ],
+      "description": "Seasoned chicken thighs, hummus, pita and vegetables.",
+      "tags": [
+        "chicken thighs",
+        "build-your-own"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "shawarma-bowls",
+      "name": "Chicken shawarma bowls",
+      "proteins": [
+        "chicken"
+      ],
+      "description": "Spiced chicken, rice, hummus, pita, cucumbers and sauces.",
+      "tags": [
+        "chicken thighs",
+        "build-your-own"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "halal-cart",
+      "name": "Halal-cart chicken bowls",
+      "proteins": [
+        "chicken"
+      ],
+      "description": "Spiced chicken, yellow rice, lettuce, pita and white sauce.",
+      "tags": [
+        "chicken thighs",
+        "rice bowl"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "chicken-katsu",
+      "name": "Chicken katsu",
+      "proteins": [
+        "chicken"
+      ],
+      "description": "Crispy chicken cutlets, rice, cabbage and tonkatsu sauce.",
+      "tags": [
+        "crispy",
+        "Japanese"
+      ],
+      "quick": false,
+      "noProtein": null
+    },
+    {
+      "id": "chicken-piccata",
+      "name": "Chicken piccata",
+      "proteins": [
+        "chicken"
+      ],
+      "description": "Thin chicken cutlets with lemon-butter-caper sauce and pasta.",
+      "tags": [
+        "stovetop",
+        "bright"
+      ],
+      "quick": true,
+      "noProtein": null
+    },
+    {
+      "id": "indian-chicken",
+      "name": "Indian chicken night",
+      "proteins": [
+        "chicken"
+      ],
+      "description": "Choose butter chicken or chicken tikka masala with rice and naan.",
+      "tags": [
+        "chicken thighs",
+        "rotation"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "thai-curry",
+      "name": "Thai curry",
+      "proteins": [
+        "chicken"
+      ],
+      "description": "Panang or another Thai curry with chicken thighs and rice.",
+      "tags": [
+        "chicken thighs",
+        "one-pot"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "lemongrass-chicken",
+      "name": "Vietnamese lemongrass chicken",
+      "proteins": [
+        "chicken"
+      ],
+      "description": "Caramelized lemongrass chicken thighs with rice and cucumbers.",
+      "tags": [
+        "chicken thighs",
+        "rice bowl"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "jerk-chicken",
+      "name": "Jerk chicken plates",
+      "proteins": [
+        "chicken"
+      ],
+      "description": "Spicy grilled chicken thighs with rice and beans.",
+      "tags": [
+        "chicken thighs",
+        "grill"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "peri-peri",
+      "name": "Peri-peri chicken",
+      "proteins": [
+        "chicken"
+      ],
+      "description": "Spicy, tangy roasted chicken thighs with crispy potatoes.",
+      "tags": [
+        "chicken thighs",
+        "sheet pan"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "chicken-bacon-ranch",
+      "name": "Chicken bacon ranch sandwiches",
+      "proteins": [
+        "chicken"
+      ],
+      "description": "Grilled chicken thighs, bacon, cheese and ranch on toasted rolls.",
+      "tags": [
+        "sandwich",
+        "crowd-pleaser"
+      ],
+      "quick": true,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "fried-chicken",
+      "name": "Fried chicken",
+      "proteins": [
+        "chicken"
+      ],
+      "description": "Crispy fried chicken with simple sides.",
+      "tags": [
+        "crispy",
+        "project"
+      ],
+      "quick": false,
+      "noProtein": null
+    },
+    {
+      "id": "cajun-parm-pasta",
+      "name": "Cajun Parmesan chicken pasta",
+      "proteins": [
+        "chicken"
+      ],
+      "description": "Creamy Cajun chicken pasta with plenty of Parmesan.",
+      "tags": [
+        "pasta",
+        "creamy"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "chicken-salad",
+      "name": "Chicken salad",
+      "proteins": [
+        "chicken"
+      ],
+      "description": "Chicken salad served as sandwiches, wraps or a composed plate.",
+      "tags": [
+        "cold",
+        "easy"
+      ],
+      "quick": true,
+      "noProtein": null
+    },
+    {
+      "id": "chicken-salad-melt",
+      "name": "Chicken salad melts",
+      "proteins": [
+        "chicken"
+      ],
+      "description": "Chicken salad and melted cheese on toasted bread.",
+      "tags": [
+        "sandwich",
+        "quick"
+      ],
+      "quick": true,
+      "noProtein": null
+    },
+    {
+      "id": "italian-beef",
+      "name": "Italian beef sandwiches",
+      "proteins": [
+        "beef"
+      ],
+      "description": "Juicy shredded beef, provolone and pepperoncini on rolls.",
+      "tags": [
+        "sandwich",
+        "slow-cooked"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "reubens",
+      "name": "Reubens",
+      "proteins": [
+        "beef"
+      ],
+      "description": "Corned beef, Swiss, sauerkraut and dressing on grilled rye.",
+      "tags": [
+        "sandwich",
+        "griddled"
+      ],
+      "quick": false,
+      "noProtein": null
+    },
+    {
+      "id": "french-dip",
+      "name": "French dip sandwiches",
+      "proteins": [
+        "beef"
+      ],
+      "description": "Roast beef and provolone on rolls with hot jus.",
+      "tags": [
+        "sandwich",
+        "easy"
+      ],
+      "quick": true,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "cheesesteaks",
+      "name": "Philly cheesesteaks",
+      "proteins": [
+        "beef"
+      ],
+      "description": "Thin beef, onions and provolone on toasted rolls.",
+      "tags": [
+        "sandwich",
+        "griddle"
+      ],
+      "quick": true,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "burgers",
+      "name": "Burgers",
+      "proteins": [
+        "beef"
+      ],
+      "description": "Classic burgers with everyone’s toppings on the side.",
+      "tags": [
+        "grill",
+        "build-your-own"
+      ],
+      "quick": true,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "sloppy-joes",
+      "name": "Sloppy joes",
+      "proteins": [
+        "beef"
+      ],
+      "description": "Tangy ground beef on toasted buns.",
+      "tags": [
+        "easy",
+        "sandwich"
+      ],
+      "quick": true,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "steak-au-poivre",
+      "name": "Steak au poivre",
+      "proteins": [
+        "beef"
+      ],
+      "description": "Seared steak with peppercorn cream sauce and fries.",
+      "tags": [
+        "steak",
+        "special"
+      ],
+      "quick": false,
+      "noProtein": null
+    },
+    {
+      "id": "short-ribs",
+      "name": "Braised short ribs",
+      "proteins": [
+        "beef"
+      ],
+      "description": "Slow-braised beef with mashed potatoes and salad.",
+      "tags": [
+        "slow-cooked",
+        "comfort"
+      ],
+      "quick": false,
+      "noProtein": null
+    },
+    {
+      "id": "meatloaf",
+      "name": "Meatloaf",
+      "proteins": [
+        "beef"
+      ],
+      "description": "Classic meatloaf with mashed potatoes or roasted vegetables.",
+      "tags": [
+        "comfort",
+        "oven"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "meatballs-pasta",
+      "name": "Meatballs and pasta",
+      "proteins": [
+        "beef"
+      ],
+      "description": "Italian meatballs with red sauce and pasta.",
+      "tags": [
+        "Italian",
+        "family favorite"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "stroganoff",
+      "name": "Beef stroganoff",
+      "proteins": [
+        "beef"
+      ],
+      "description": "Beef and mushrooms in a creamy sauce over egg noodles.",
+      "tags": [
+        "comfort",
+        "stovetop"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "bolognese",
+      "name": "Bolognese",
+      "proteins": [
+        "beef",
+        "pork"
+      ],
+      "description": "Slow-simmered meat sauce over pasta.",
+      "tags": [
+        "pasta",
+        "batch-friendly"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "korean-beef",
+      "name": "Korean ground-beef bowls",
+      "proteins": [
+        "beef"
+      ],
+      "description": "Sweet-savory ground beef, rice, cucumbers and optional kimchi.",
+      "tags": [
+        "rice bowl",
+        "quick"
+      ],
+      "quick": true,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "hamburger-helper",
+      "name": "Homemade Hamburger Helper",
+      "proteins": [
+        "beef"
+      ],
+      "description": "One-pot cheeseburger macaroni.",
+      "tags": [
+        "one-pot",
+        "easy"
+      ],
+      "quick": true,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "chili",
+      "name": "Chili",
+      "proteins": [
+        "beef"
+      ],
+      "description": "Beef-and-bean chili with toppings on the side.",
+      "tags": [
+        "one-pot",
+        "batch-friendly"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "tamale-pie",
+      "name": "Tamale pie",
+      "proteins": [
+        "beef"
+      ],
+      "description": "Seasoned beef filling baked under a cornbread topping.",
+      "tags": [
+        "baked",
+        "comfort"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "carne-asada",
+      "name": "Carne asada",
+      "proteins": [
+        "beef"
+      ],
+      "description": "Grilled marinated steak with tortillas, rice or salad.",
+      "tags": [
+        "grill",
+        "Mexican"
+      ],
+      "quick": false,
+      "noProtein": null
+    },
+    {
+      "id": "steak-quesadilla",
+      "name": "Steak quesadillas",
+      "proteins": [
+        "beef"
+      ],
+      "description": "Crisp tortillas filled with steak and melted cheese.",
+      "tags": [
+        "quick",
+        "griddled"
+      ],
+      "quick": true,
+      "noProtein": null
+    },
+    {
+      "id": "corned-beef",
+      "name": "Corned beef dinner",
+      "proteins": [
+        "beef"
+      ],
+      "description": "Corned beef with potatoes, cabbage and mustard.",
+      "tags": [
+        "classic",
+        "slow-cooked"
+      ],
+      "quick": false,
+      "noProtein": null
+    },
+    {
+      "id": "aloo-keema",
+      "name": "Aloo keema matar",
+      "proteins": [
+        "beef"
+      ],
+      "description": "Spiced ground beef with potatoes and peas.",
+      "tags": [
+        "Indian",
+        "one-pot"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "arthur-ave",
+      "name": "Arthur Avenue sandwiches",
+      "proteins": [
+        "pork"
+      ],
+      "description": "Ground Italian sausage piled onto rolls.",
+      "tags": [
+        "sandwich",
+        "sausage"
+      ],
+      "quick": true,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "lemongrass-pork-burger",
+      "name": "Ginger-garlic-lemongrass pork burgers",
+      "proteins": [
+        "pork"
+      ],
+      "description": "Savory pork burgers with bright Southeast Asian flavors.",
+      "tags": [
+        "burger",
+        "grill"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "caramel-pork",
+      "name": "Vietnamese caramel pork bowls",
+      "proteins": [
+        "pork"
+      ],
+      "description": "Sweet-savory ground pork with rice and cucumbers.",
+      "tags": [
+        "rice bowl",
+        "quick"
+      ],
+      "quick": true,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "pulled-pork",
+      "name": "Pulled-pork sandwiches",
+      "proteins": [
+        "pork"
+      ],
+      "description": "Shredded pork with slaw and pickles served separately.",
+      "tags": [
+        "sandwich",
+        "batch-friendly"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "pork-tonkatsu",
+      "name": "Pork tonkatsu",
+      "proteins": [
+        "pork"
+      ],
+      "description": "Crispy pork cutlets with rice, cabbage and tonkatsu sauce.",
+      "tags": [
+        "crispy",
+        "Japanese"
+      ],
+      "quick": false,
+      "noProtein": null
+    },
+    {
+      "id": "bratwurst",
+      "name": "Bratwurst plates",
+      "proteins": [
+        "pork"
+      ],
+      "description": "Bratwurst with roasted potatoes, sauerkraut and mustard.",
+      "tags": [
+        "sausage",
+        "easy"
+      ],
+      "quick": true,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "maxwell-polish",
+      "name": "Maxwell Street Polish sandwiches",
+      "proteins": [
+        "pork"
+      ],
+      "description": "Polish sausage, grilled onions, mustard and peppers on rolls.",
+      "tags": [
+        "sandwich",
+        "sausage"
+      ],
+      "quick": true,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "lentils-kielbasa",
+      "name": "Lentils and kielbasa",
+      "proteins": [
+        "pork"
+      ],
+      "description": "Earthy lentils with smoky sausage.",
+      "tags": [
+        "one-pot",
+        "hearty"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "red-beans-rice",
+      "name": "Red beans and rice with sausage",
+      "proteins": [
+        "pork"
+      ],
+      "description": "Smoky red beans, sausage and rice.",
+      "tags": [
+        "one-pot",
+        "batch-friendly"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "sausage-ragu",
+      "name": "Sausage ragù",
+      "proteins": [
+        "pork"
+      ],
+      "description": "Italian sausage simmered in tomato sauce over rigatoni.",
+      "tags": [
+        "pasta",
+        "Italian"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "blts",
+      "name": "BLTs",
+      "proteins": [
+        "pork"
+      ],
+      "description": "Bacon, lettuce and tomato on good toasted bread.",
+      "tags": [
+        "sandwich",
+        "no big protein"
+      ],
+      "quick": true,
+      "noProtein": "ready"
+    },
+    {
+      "id": "tuna-steaks",
+      "name": "Seared tuna steaks",
+      "proteins": [
+        "seafood"
+      ],
+      "description": "Quick-seared tuna with rice, salad or vegetables.",
+      "tags": [
+        "quick",
+        "seared"
+      ],
+      "quick": true,
+      "noProtein": null
+    },
+    {
+      "id": "poke-bowls",
+      "name": "Poke bowls",
+      "proteins": [
+        "seafood"
+      ],
+      "description": "Tuna, rice and customizable toppings and sauces.",
+      "tags": [
+        "cold",
+        "build-your-own"
+      ],
+      "quick": false,
+      "noProtein": null
+    },
+    {
+      "id": "tuna-melts",
+      "name": "Tuna melts",
+      "proteins": [
+        "seafood"
+      ],
+      "description": "Canned tuna salad and melted cheese on toast.",
+      "tags": [
+        "pantry",
+        "sandwich"
+      ],
+      "quick": true,
+      "noProtein": "ready"
+    },
+    {
+      "id": "taco-night",
+      "name": "Taco night",
+      "proteins": [
+        "beef",
+        "chicken",
+        "pork"
+      ],
+      "description": "Use ground beef, carne asada, pollo asado or chicken thighs.",
+      "tags": [
+        "Mexican",
+        "build-your-own"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "fajita-bowls",
+      "name": "Fajita bowls",
+      "proteins": [
+        "beef",
+        "chicken"
+      ],
+      "description": "Chicken or steak, rice, peppers and individual toppings.",
+      "tags": [
+        "rice bowl",
+        "build-your-own"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "gyros",
+      "name": "Gyros or gyro bowls",
+      "proteins": [
+        "beef"
+      ],
+      "description": "Freezer gyro meat, pita or rice, tzatziki and toppings.",
+      "tags": [
+        "freezer staple",
+        "build-your-own"
+      ],
+      "quick": false,
+      "noProtein": "ready"
+    },
+    {
+      "id": "dumplings",
+      "name": "Dumplings or gyoza",
+      "proteins": [
+        "pork",
+        "chicken",
+        "vegetarian"
+      ],
+      "description": "Pan-fried or steamed freezer dumplings with rice and cucumbers.",
+      "tags": [
+        "freezer staple",
+        "quick"
+      ],
+      "quick": true,
+      "noProtein": "ready"
+    },
+    {
+      "id": "nachos",
+      "name": "Nachos",
+      "proteins": [
+        "beef",
+        "chicken",
+        "vegetarian"
+      ],
+      "description": "Chips, cheese, beans and whatever toppings are available.",
+      "tags": [
+        "pantry",
+        "build-your-own"
+      ],
+      "quick": true,
+      "noProtein": "ready"
+    },
+    {
+      "id": "ramen",
+      "name": "Ramen with eggs",
+      "proteins": [
+        "vegetarian"
+      ],
+      "description": "Ramen upgraded with jammy eggs and whatever vegetables are handy.",
+      "tags": [
+        "pantry",
+        "quick"
+      ],
+      "quick": true,
+      "noProtein": "ready"
+    },
+    {
+      "id": "pizza",
+      "name": "Pizza night",
+      "proteins": [
+        "vegetarian"
+      ],
+      "description": "Make pizza from scratch—or use a frozen pizza when energy is gone.",
+      "tags": [
+        "flexible",
+        "freezer option"
+      ],
+      "quick": true,
+      "noProtein": "ready"
+    },
+    {
+      "id": "breakfast-dinner",
+      "name": "Breakfast for dinner",
+      "proteins": [
+        "vegetarian",
+        "pork"
+      ],
+      "description": "Eggs, toast and potatoes, with bacon or sausage if available.",
+      "tags": [
+        "pantry",
+        "quick"
+      ],
+      "quick": true,
+      "noProtein": "ready"
+    },
+    {
+      "id": "cauliflower-soup",
+      "name": "Cauliflower soup",
+      "proteins": [
+        "vegetarian"
+      ],
+      "description": "Creamy cauliflower soup with toast or grilled cheese.",
+      "tags": [
+        "soup",
+        "light"
+      ],
+      "quick": true,
+      "noProtein": "ready"
+    },
+    {
+      "id": "tortilla-soup",
+      "name": "Chicken tortilla soup",
+      "proteins": [
+        "chicken"
+      ],
+      "description": "Tomato-chile broth, chicken and crunchy toppings.",
+      "tags": [
+        "soup",
+        "toppings"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "pozole",
+      "name": "Pozole",
+      "proteins": [
+        "pork",
+        "chicken"
+      ],
+      "description": "Hominy soup with pork or chicken and a full toppings spread.",
+      "tags": [
+        "soup",
+        "Mexican"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "baked-pasta",
+      "name": "Baked pasta or baked ziti",
+      "proteins": [
+        "beef",
+        "pork",
+        "vegetarian"
+      ],
+      "description": "Lasagna-style baked pasta without ricotta.",
+      "tags": [
+        "baked",
+        "comfort"
+      ],
+      "quick": false,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "vodka-pasta",
+      "name": "Pasta alla vodka",
+      "proteins": [
+        "chicken",
+        "pork",
+        "vegetarian"
+      ],
+      "description": "Creamy tomato pasta with optional chicken or sausage.",
+      "tags": [
+        "pasta",
+        "flexible"
+      ],
+      "quick": true,
+      "noProtein": "defrost"
+    },
+    {
+      "id": "butter-paneer",
+      "name": "Butter paneer",
+      "proteins": [
+        "vegetarian"
+      ],
+      "description": "Paneer in a creamy spiced tomato sauce with rice and naan.",
+      "tags": [
+        "Indian",
+        "vegetarian"
+      ],
+      "quick": false,
+      "noProtein": null
+    },
+    {
+      "id": "bulgur-salad",
+      "name": "Bulgur salad",
+      "proteins": [
+        "chicken",
+        "beef",
+        "seafood",
+        "vegetarian"
+      ],
+      "description": "Add chicken, kofta, steak, salmon, chickpeas or halloumi.",
+      "tags": [
+        "fresh",
+        "flexible"
+      ],
+      "quick": false,
+      "noProtein": null
+    },
+    {
+      "id": "freezer-dinner",
+      "name": "Freezer dinner",
+      "proteins": [
+        "chicken",
+        "seafood",
+        "vegetarian"
+      ],
+      "description": "Chicken nuggets, corn dogs, fish sticks and mozzarella sticks.",
+      "tags": [
+        "zero effort",
+        "freezer"
+      ],
+      "quick": true,
+      "noProtein": "ready"
+    }
+  ]
+}
