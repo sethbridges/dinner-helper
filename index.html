@@ -120,6 +120,8 @@
     }
     .meal-card:nth-child(2) { animation-delay: .04s; }
     .meal-card:nth-child(3) { animation-delay: .08s; }
+    .meal-card:nth-child(4) { animation-delay: .12s; }
+    .meal-card:nth-child(5) { animation-delay: .16s; }
     @keyframes rise { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform:none; } }
     .meal-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
     .meal-number { color: var(--orange); font-family: Georgia, serif; font-size: 14px; font-style: italic; }
@@ -155,12 +157,46 @@
     .history-row button { border:0; background:transparent; color:var(--orange); font-weight:800; font-size:12px; }
     .clear-all { width:100%; margin-top:25px; padding:13px; border:1px solid rgba(180,60,40,.2); border-radius:14px; color:#a33c2c; background:#fff5f1; font-weight:800; }
 
+    .browse { display:none; }
+    .browse.active { display:block; }
+    .visually-hidden {
+      position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+    }
+    .browse-search { display:block; margin: 0 0 10px; }
+    .browse-search input {
+      width:100%; min-height:48px; padding:12px 14px; border:1px solid var(--line); border-radius:15px;
+      background:rgba(255,253,248,.78); color:var(--ink); font: inherit; font-size:16px;
+    }
+    .browse-filters { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:12px; }
+    .browse-chip {
+      min-height:36px; padding:6px 11px; border:1px solid var(--line); border-radius:999px;
+      background:rgba(255,253,248,.78); color:var(--ink); font-size:13px; font-weight:800;
+    }
+    .browse-chip.selected { background:var(--green); border-color:var(--green); color:white; }
+    .browse-count { margin:0 0 10px; color:var(--muted); font-size:12px; font-weight:750; }
+    .browse-list { display:grid; gap:8px; }
+    .browse-row {
+      display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+      padding:13px 14px; border:1px solid var(--line); border-radius:15px; background:rgba(255,253,248,.78);
+    }
+    .browse-row > div { min-width:0; }
+    .browse-row.tonight { background:var(--sage); border-color:rgba(40,95,75,.14); }
+    .browse-row strong { display:block; font-size:15px; letter-spacing:-.01em; }
+    .browse-row p { margin:4px 0 0; color:var(--muted); font-size:13px; line-height:1.35; }
+    .browse-row small { display:block; margin-top:6px; color:var(--muted); font-size:11px; font-weight:750; }
+    .browse-row.tonight small { color:var(--green); }
+    .browse-row button {
+      flex:0 0 auto; min-height:40px; padding:8px 11px; border:0; border-radius:12px;
+      background:var(--green); color:white; font-size:12px; font-weight:850; white-space:nowrap;
+    }
+    .browse-row button.undo { background:transparent; color:var(--green); }
+
     nav {
       position:fixed; z-index:5; left:50%; bottom:0; transform:translateX(-50%); width:min(100%,560px);
-      display:grid; grid-template-columns:1fr 1fr; padding:9px 18px calc(9px + env(safe-area-inset-bottom));
+      display:grid; grid-template-columns:1fr 1fr 1fr; padding:9px 18px calc(9px + env(safe-area-inset-bottom));
       background:rgba(247,243,233,.91); border-top:1px solid rgba(32,51,45,.09); backdrop-filter:blur(18px); -webkit-backdrop-filter:blur(18px);
     }
-    nav button { min-height:48px; border:0; border-radius:15px; background:transparent; color:var(--muted); font-weight:800; }
+    nav button { min-height:48px; border:0; border-radius:15px; background:transparent; color:var(--muted); font-size:13px; font-weight:800; }
     nav button.active { background:var(--sage); color:var(--green-dark); }
 
     @media (min-width: 480px) { .protein-grid { grid-template-columns: repeat(3, 1fr); } .protein.none { grid-column:auto; } }
@@ -193,6 +229,21 @@
       </section>
     </section>
 
+    <section class="browse" id="browse">
+      <div class="history-head"><h2>All meals</h2><p>The full list. Mark tonight even if a meal is in your recent rotation.</p></div>
+      <label class="browse-search"><span class="visually-hidden">Search meals</span><input type="search" id="browseSearch" placeholder="Search meals" autocomplete="off"></label>
+      <div class="browse-filters" id="browseFilters">
+        <button type="button" class="browse-chip selected" data-browse-protein="">All</button>
+        <button type="button" class="browse-chip" data-browse-protein="chicken">Chicken</button>
+        <button type="button" class="browse-chip" data-browse-protein="beef">Beef</button>
+        <button type="button" class="browse-chip" data-browse-protein="pork">Pork</button>
+        <button type="button" class="browse-chip" data-browse-protein="seafood">Seafood</button>
+        <button type="button" class="browse-chip" data-browse-protein="vegetarian">Vegetarian</button>
+      </div>
+      <p class="browse-count" id="browseCount"></p>
+      <div class="browse-list" id="browseList"></div>
+    </section>
+
     <section class="history" id="history">
       <div class="history-head"><h2>Your rotation</h2><p>Selections are hidden for 14 days. Mutes last 7 days.</p></div>
       <div class="history-group"><h3>Recently made</h3><div class="history-list" id="madeList"></div></div>
@@ -203,6 +254,7 @@
 
   <nav aria-label="App sections">
     <button class="active" data-view="picker">Tonight</button>
+    <button data-view="browse">All meals</button>
     <button data-view="history">History</button>
   </nav>
   <div class="toast" id="toast" role="status"></div>
@@ -218,6 +270,8 @@
     const selected = new Set();
     let quickOnly = false;
     let shownIds = [];
+    let browseQuery = '';
+    let browseProtein = '';
 
     function readCookie(name, fallback) {
       const hit = document.cookie.split('; ').find(row => row.startsWith(name + '='));
@@ -247,6 +301,14 @@
     }
     function mealById(id) { return meals.find(m => m.id === id); }
     function formatDate(ts) { return new Intl.DateTimeFormat(undefined,{month:'short',day:'numeric'}).format(new Date(ts)); }
+    function tonightEntry() {
+      const history = historyData();
+      const todayStart = new Date(); todayStart.setHours(0,0,0,0);
+      return [...history].reverse().find(x => x.t >= todayStart.getTime()) || null;
+    }
+    function refreshIdeasIfShowing() {
+      if (!document.getElementById('inspire').disabled) showIdeas();
+    }
     function escapeHtml(value) { return String(value).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c])); }
 
     function randomize(array) {
@@ -275,7 +337,7 @@
       const all = eligibleMeals();
       const fresh = randomize(all.filter(m => !shownIds.includes(m.id)));
       const seen = randomize(all.filter(m => shownIds.includes(m.id)));
-      const picks = [...fresh, ...seen].slice(0, 3);
+      const picks = [...fresh, ...seen].slice(0, 5);
       shownIds = picks.map(x => x.id);
       renderResults(picks);
       if (picks.length) document.getElementById('results').scrollIntoView({behavior:'smooth',block:'start'});
@@ -309,22 +371,64 @@
       const history = historyData();
       history.push({i:id,t:Date.now()}); writeCookie(COOKIE_HISTORY, history.slice(-40));
       const mutes = muteData(); delete mutes[id]; writeCookie(COOKIE_MUTES, mutes);
-      renderToday(); toast('Dinner chosen — hidden for 14 days'); showIdeas();
+      renderToday(); renderBrowse(); toast('Dinner chosen — hidden for 14 days'); refreshIdeasIfShowing();
     }
 
     function muteMeal(id) {
       const mutes = muteData(); mutes[id] = Date.now() + 7 * DAY; writeCookie(COOKIE_MUTES, mutes);
-      toast('Muted for 7 days'); showIdeas();
+      toast('Muted for 7 days'); refreshIdeasIfShowing();
     }
 
     function renderToday() {
-      const history = historyData();
-      const todayStart = new Date(); todayStart.setHours(0,0,0,0);
-      const last = [...history].reverse().find(x => x.t >= todayStart.getTime());
+      const last = tonightEntry();
       const box = document.getElementById('today');
       if (!last || !mealById(last.i)) { box.className='today'; box.innerHTML=''; return; }
       box.className='today visible';
       box.innerHTML=`<div><small>Tonight’s plan</small><strong>${escapeHtml(mealById(last.i).name)}</strong></div><button data-undo-timestamp="${last.t}">Undo</button>`;
+    }
+
+    function renderBrowse() {
+      const list = document.getElementById('browseList');
+      const count = document.getElementById('browseCount');
+      if (!mealsLoaded) {
+        count.textContent = '';
+        list.innerHTML = '<div class="empty"><span class="big">🍽️</span>Loading the meal list…</div>';
+        return;
+      }
+      const {history, mutes} = prune();
+      const recent = new Map(history.filter(x => Date.now() - x.t < 14 * DAY).map(x => [x.i, x.t]));
+      const tonight = tonightEntry();
+      const query = browseQuery.trim().toLowerCase();
+      const matches = meals.filter(meal => {
+        if (browseProtein && !meal.proteins.includes(browseProtein)) return false;
+        if (!query) return true;
+        return [meal.name, meal.description, ...meal.tags, ...meal.proteins].join(' ').toLowerCase().includes(query);
+      }).sort((a, b) => a.name.localeCompare(b.name));
+      count.textContent = matches.length === meals.length
+        ? `${meals.length} meals`
+        : `${matches.length} of ${meals.length} meals`;
+      if (!matches.length) {
+        list.innerHTML = '<div class="empty"><span class="big">🫙</span>Nothing matches that search.</div>';
+        return;
+      }
+      list.innerHTML = matches.map(meal => {
+        const isTonight = tonight && tonight.i === meal.id;
+        const madeAt = recent.get(meal.id);
+        const mutedUntil = mutes[meal.id] > Date.now() ? mutes[meal.id] : null;
+        const notes = [
+          isTonight ? 'Tonight’s plan' : '',
+          !isTonight && madeAt ? `Made ${formatDate(madeAt)}` : '',
+          mutedUntil ? `Muted until ${formatDate(mutedUntil)}` : '',
+          meal.quick ? 'Quick' : ''
+        ].filter(Boolean);
+        const action = isTonight
+          ? `<button class="undo" data-undo-timestamp="${tonight.t}">Undo</button>`
+          : `<button data-action="choose" data-id="${meal.id}">I’ll make this</button>`;
+        return `<article class="browse-row${isTonight ? ' tonight' : ''}">
+          <div><strong>${escapeHtml(meal.name)}</strong><p>${escapeHtml(meal.description)}</p>${notes.length ? `<small>${notes.map(escapeHtml).join(' · ')}</small>` : ''}</div>
+          ${action}
+        </article>`;
+      }).join('');
     }
 
     function renderHistory() {
@@ -342,16 +446,18 @@
     }
 
     function removeHistory(timestamp) {
-      writeCookie(COOKIE_HISTORY, historyData().filter(x=>x.t!==Number(timestamp))); renderToday(); renderHistory(); toast('Selection removed');
+      writeCookie(COOKIE_HISTORY, historyData().filter(x=>x.t!==Number(timestamp))); renderToday(); renderHistory(); renderBrowse(); toast('Selection removed');
     }
-    function unmute(id) { const m=muteData(); delete m[id]; writeCookie(COOKIE_MUTES,m); renderHistory(); toast('Meal unmuted'); }
+    function unmute(id) { const m=muteData(); delete m[id]; writeCookie(COOKIE_MUTES,m); renderHistory(); renderBrowse(); toast('Meal unmuted'); }
 
     function switchView(view) {
-      const isHistory=view==='history';
-      document.getElementById('picker').classList.toggle('hidden',isHistory);
-      document.getElementById('history').classList.toggle('active',isHistory);
+      document.getElementById('picker').classList.toggle('hidden', view !== 'picker');
+      document.getElementById('browse').classList.toggle('active', view === 'browse');
+      document.getElementById('history').classList.toggle('active', view === 'history');
       document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('active',b.dataset.view===view));
-      if(isHistory) renderHistory(); window.scrollTo({top:0,behavior:'smooth'});
+      if (view === 'history') renderHistory();
+      if (view === 'browse') renderBrowse();
+      window.scrollTo({top:0,behavior:'smooth'});
     }
 
     let toastTimer;
@@ -382,6 +488,22 @@
       button.dataset.action==='choose' ? chooseMeal(button.dataset.id) : muteMeal(button.dataset.id);
     });
     document.getElementById('today').addEventListener('click',e=>{const b=e.target.closest('[data-undo-timestamp]');if(b)removeHistory(b.dataset.undoTimestamp);});
+    document.getElementById('browse').addEventListener('click', event => {
+      const choose = event.target.closest('[data-action="choose"]');
+      const undo = event.target.closest('[data-undo-timestamp]');
+      const chip = event.target.closest('[data-browse-protein]');
+      if (choose) chooseMeal(choose.dataset.id);
+      if (undo) removeHistory(undo.dataset.undoTimestamp);
+      if (chip) {
+        browseProtein = chip.dataset.browseProtein;
+        document.querySelectorAll('[data-browse-protein]').forEach(b => b.classList.toggle('selected', b === chip));
+        renderBrowse();
+      }
+    });
+    document.getElementById('browseSearch').addEventListener('input', event => {
+      browseQuery = event.target.value;
+      renderBrowse();
+    });
     document.getElementById('history').addEventListener('click',e=>{
       const h=e.target.closest('[data-remove-history]'); const m=e.target.closest('[data-unmute]');
       if(h) removeHistory(h.dataset.removeHistory); if(m) unmute(m.dataset.unmute);
@@ -390,7 +512,7 @@
     document.getElementById('historyShortcut').addEventListener('click',()=>switchView('history'));
     document.getElementById('clearAll').addEventListener('click',()=>{
       if(!confirm('Clear all meal history and mutes?')) return;
-      writeCookie(COOKIE_HISTORY,[]); writeCookie(COOKIE_MUTES,{}); renderHistory(); renderToday(); toast('Saved meal data cleared');
+      writeCookie(COOKIE_HISTORY,[]); writeCookie(COOKIE_MUTES,{}); renderHistory(); renderBrowse(); renderToday(); toast('Saved meal data cleared');
     });
 
     async function loadMeals() {
@@ -408,7 +530,7 @@
         meals = payload.meals;
         mealsLoaded = true;
         document.getElementById('inspire').disabled = selected.size === 0 && !quickOnly;
-        prune(); renderToday();
+        prune(); renderToday(); renderBrowse();
       } catch (error) {
         console.error(error);
         document.getElementById('results').innerHTML = '<div class="empty"><span class="big">⚠️</span>I couldn’t load meals.json. Check that it is valid JSON and uploaded beside index.html.</div>';
