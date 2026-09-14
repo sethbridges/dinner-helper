@@ -132,6 +132,11 @@
     .meal-number { color: var(--orange); font-family: Georgia, serif; font-size: 14px; font-style: italic; }
     .meal-card h3 { margin: 4px 0 7px; font-family: Georgia, "Times New Roman", serif; font-size: 24px; line-height: 1.1; letter-spacing: -.025em; }
     .meal-card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.42; }
+    .recipe-link {
+      display: inline-block; margin-top: 8px; color: var(--green); font-size: 13px; font-weight: 800;
+      text-decoration: none;
+    }
+    .recipe-link:hover { text-decoration: underline; }
     .tags { display:flex; flex-wrap:wrap; gap:6px; margin: 13px 0 16px; }
     .tag { padding: 5px 8px; border-radius: 999px; background: #f0eee6; color: #596660; font-size: 11px; font-weight: 750; }
     .tag.readiness { background: var(--orange-soft); color: #8b4028; }
@@ -189,6 +194,7 @@
     .browse-row.planned { background:var(--sage); border-color:rgba(40,95,75,.14); }
     .browse-row strong { display:block; font-size:15px; letter-spacing:-.01em; }
     .browse-row p { margin:4px 0 0; color:var(--muted); font-size:13px; line-height:1.35; }
+    .browse-row .recipe-link { margin-top: 6px; font-size: 12px; }
     .browse-row small { display:block; margin-top:6px; color:var(--muted); font-size:11px; font-weight:750; }
     .browse-row.planned small { color:var(--green); }
     .plan-days { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:6px; }
@@ -351,6 +357,18 @@
       renderResults(shownIds.map(mealById).filter(Boolean), {animate: false});
     }
     function escapeHtml(value) { return String(value).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c])); }
+    function recipeHref(value) {
+      if (typeof value !== 'string') return '';
+      try {
+        const url = new URL(value.trim());
+        if (url.protocol === 'http:' || url.protocol === 'https:') return url.href;
+      } catch {}
+      return '';
+    }
+    function recipeLinkHtml(meal) {
+      const href = recipeHref(meal.recipe);
+      return href ? `<a class="recipe-link" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">Recipe</a>` : '';
+    }
 
     function randomize(array) {
       const result = [...array];
@@ -405,6 +423,7 @@
         return `<article class="${cardClass}">
           <div class="meal-top"><div><span class="meal-number">Idea ${i+1}</span><h3>${escapeHtml(m.name)}</h3></div></div>
           <p>${escapeHtml(m.description)}</p>
+          ${recipeLinkHtml(m)}
           <div class="tags">${ready ? `<span class="tag readiness">${ready}</span>` : ''}${m.quick ? '<span class="tag">⚡ Quick</span>' : ''}${m.tags.map(t=>`<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>
           <div class="card-actions">${dayButtons}<button class="mute" data-action="mute" data-id="${m.id}">Mute 7 days</button></div>
         </article>`;
@@ -482,7 +501,7 @@
         ].filter(Boolean);
         const dayButtons = planOffsets().map(offset => dayButtonHtml(meal.id, offset, plans)).join('');
         return `<article class="browse-row${plannedFor.length ? ' planned' : ''}">
-          <div><strong>${escapeHtml(meal.name)}</strong><p>${escapeHtml(meal.description)}</p>${notes.length ? `<small>${notes.map(escapeHtml).join(' · ')}</small>` : ''}</div>
+          <div><strong>${escapeHtml(meal.name)}</strong><p>${escapeHtml(meal.description)}</p>${recipeLinkHtml(meal)}${notes.length ? `<small>${notes.map(escapeHtml).join(' · ')}</small>` : ''}</div>
           <div class="plan-days">${dayButtons}</div>
         </article>`;
       }).join('');
@@ -588,6 +607,9 @@
         for (const meal of payload.meals) {
           if (!meal.id || !meal.name || !Array.isArray(meal.proteins) || !Array.isArray(meal.tags)) throw new Error('A meal entry is incomplete');
           if (ids.has(meal.id)) throw new Error(`Duplicate meal id: ${meal.id}`);
+          if (meal.recipe != null && meal.recipe !== '' && !recipeHref(meal.recipe)) {
+            console.warn(`Invalid recipe URL for ${meal.id}`);
+          }
           ids.add(meal.id);
         }
         meals = payload.meals;
