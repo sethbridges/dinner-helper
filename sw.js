@@ -1,4 +1,4 @@
-const CACHE = 'dinner-please-v7';
+const CACHE = 'dinner-please-v8';
 const ASSETS = ['./', './index.html', './meals.json', './manifest.webmanifest', './icon-192.png', './icon-512.png', './apple-touch-icon.png'];
 
 self.addEventListener('install', event => {

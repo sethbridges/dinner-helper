@@ -109,6 +109,7 @@
     .plan-row small { display:block; color: var(--muted); font-weight: 800; text-transform: uppercase; letter-spacing: .08em; font-size: 10px; }
     .plan-row.today small { color: var(--green); }
     .plan-row strong { display:block; margin-top: 2px; font-size: 15px; }
+    .plan-row .recipe-link { margin-top: 6px; font-size: 12px; }
     .plan-row button { border: 0; background: transparent; color: var(--green); font-weight: 800; white-space: nowrap; }
 
     .results { display: grid; gap: 12px; }
@@ -458,7 +459,7 @@
       const rows = plannedDays().map(({offset, entry}) => {
         const meal = entry && mealById(entry.i);
         if (!meal) return '';
-        return `<div class="plan-row${offset === 0 ? ' today' : ''}"><div><small>${escapeHtml(planHeading(offset))}</small><strong>${escapeHtml(meal.name)}</strong></div><button data-undo-timestamp="${entry.t}">Undo</button></div>`;
+        return `<div class="plan-row${offset === 0 ? ' today' : ''}"><div><small>${escapeHtml(planHeading(offset))}</small><strong>${escapeHtml(meal.name)}</strong>${recipeLinkHtml(meal)}</div><button data-undo-timestamp="${entry.t}">Undo</button></div>`;
       }).filter(Boolean);
       if (!rows.length) { box.className = 'plans'; box.innerHTML = ''; return; }
       box.className = 'plans visible';
