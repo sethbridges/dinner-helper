@@ -139,6 +139,7 @@
     .choose, .mute { min-height: 46px; border-radius: 14px; font-weight: 850; }
     .choose { border: 0; background: var(--green); color: white; padding: 10px 8px; font-size: 13px; }
     .choose.planned { background: var(--green-dark); }
+    .choose.taken { background: #d7ddd6; color: #5c6c64; }
     .mute { grid-column: 1 / -1; border: 1px solid var(--line); background: white; color: var(--muted); padding: 10px 13px; }
 
     .toast {
@@ -196,6 +197,7 @@
       background:white; color:var(--ink); font-size:11px; font-weight:800;
     }
     .plan-days button.planned { background:var(--green); border-color:var(--green); color:white; }
+    .plan-days button.taken { background:#e8ebe4; color:var(--muted); }
 
     nav {
       position:fixed; z-index:5; left:50%; bottom:0; transform:translateX(-50%); width:min(100%,560px);
@@ -334,6 +336,16 @@
     function plannedDays() {
       return planOffsets().map(offset => ({offset, entry: entryForDay(offset)}));
     }
+    function dayButtonHtml(mealId, offset, plans, extraClass = '') {
+      const entry = plans[offset].entry;
+      const mine = Boolean(entry && entry.i === mealId);
+      const taken = Boolean(entry && !mine);
+      const other = taken ? mealById(entry.i) : null;
+      const classes = [extraClass, mine ? 'planned' : '', taken ? 'taken' : ''].filter(Boolean).join(' ');
+      const label = `${entry ? '✓ ' : ''}${dayButtonLabel(offset)}`;
+      const title = other ? ` title="${escapeHtml(`Already planned: ${other.name}`)}"` : '';
+      return `<button class="${classes}" data-action="choose" data-id="${mealId}" data-day="${offset}"${title}>${escapeHtml(label)}</button>`;
+    }
     function rerenderShownIdeas() {
       if (!document.querySelector('#results .meal-card')) return;
       renderResults(shownIds.map(mealById).filter(Boolean), {animate: false});
@@ -389,10 +401,7 @@
       const cardClass = options.animate === false ? 'meal-card static' : 'meal-card';
       results.innerHTML = picks.map((m,i) => {
         const ready = readiness(m);
-        const dayButtons = planOffsets().map(offset => {
-          const planned = plans[offset].entry && plans[offset].entry.i === m.id;
-          return `<button class="choose${planned ? ' planned' : ''}" data-action="choose" data-id="${m.id}" data-day="${offset}">${dayButtonLabel(offset)}</button>`;
-        }).join('');
+        const dayButtons = planOffsets().map(offset => dayButtonHtml(m.id, offset, plans, 'choose')).join('');
         return `<article class="${cardClass}">
           <div class="meal-top"><div><span class="meal-number">Idea ${i+1}</span><h3>${escapeHtml(m.name)}</h3></div></div>
           <p>${escapeHtml(m.description)}</p>
@@ -471,10 +480,7 @@
           mutedUntil ? `Muted until ${formatDate(mutedUntil)}` : '',
           meal.quick ? 'Quick' : ''
         ].filter(Boolean);
-        const dayButtons = planOffsets().map(offset => {
-          const planned = plans[offset].entry && plans[offset].entry.i === meal.id;
-          return `<button class="${planned ? 'planned' : ''}" data-action="choose" data-id="${meal.id}" data-day="${offset}">${dayButtonLabel(offset)}</button>`;
-        }).join('');
+        const dayButtons = planOffsets().map(offset => dayButtonHtml(meal.id, offset, plans)).join('');
         return `<article class="browse-row${plannedFor.length ? ' planned' : ''}">
           <div><strong>${escapeHtml(meal.name)}</strong><p>${escapeHtml(meal.description)}</p>${notes.length ? `<small>${notes.map(escapeHtml).join(' · ')}</small>` : ''}</div>
           <div class="plan-days">${dayButtons}</div>
