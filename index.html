@@ -236,7 +236,7 @@
     </section>
 
     <section class="browse" id="browse">
-      <div class="history-head"><h2>All meals</h2><p>The full list. Plan tonight, tomorrow, or the next day — even if a meal is in your recent rotation.</p></div>
+      <div class="history-head"><h2>All meals</h2><p>The full list. Plan tonight plus the next five days — even if a meal is in your recent rotation.</p></div>
       <label class="browse-search"><span class="visually-hidden">Search meals</span><input type="search" id="browseSearch" placeholder="Search meals" autocomplete="off"></label>
       <div class="browse-filters" id="browseFilters">
         <button type="button" class="browse-chip selected" data-browse-protein="">All</button>
@@ -268,6 +268,7 @@
 
   <script>
     const DAY = 86400000;
+    const PLAN_DAYS = 6;
     let meals = [];
     let mealsLoaded = false;
 
@@ -314,6 +315,7 @@
       date.setDate(date.getDate() + offset);
       return date;
     }
+    function planOffsets() { return Array.from({length: PLAN_DAYS}, (_, offset) => offset); }
     function dayButtonLabel(offset) {
       if (offset === 0) return 'Tonight';
       if (offset === 1) return 'Tomorrow';
@@ -330,7 +332,7 @@
       return [...historyData()].reverse().find(x => x.t >= start && x.t < end) || null;
     }
     function plannedDays() {
-      return [0, 1, 2].map(offset => ({offset, entry: entryForDay(offset)}));
+      return planOffsets().map(offset => ({offset, entry: entryForDay(offset)}));
     }
     function rerenderShownIdeas() {
       if (!document.querySelector('#results .meal-card')) return;
@@ -387,7 +389,7 @@
       const cardClass = options.animate === false ? 'meal-card static' : 'meal-card';
       results.innerHTML = picks.map((m,i) => {
         const ready = readiness(m);
-        const dayButtons = [0,1,2].map(offset => {
+        const dayButtons = planOffsets().map(offset => {
           const planned = plans[offset].entry && plans[offset].entry.i === m.id;
           return `<button class="choose${planned ? ' planned' : ''}" data-action="choose" data-id="${m.id}" data-day="${offset}">${dayButtonLabel(offset)}</button>`;
         }).join('');
@@ -469,7 +471,7 @@
           mutedUntil ? `Muted until ${formatDate(mutedUntil)}` : '',
           meal.quick ? 'Quick' : ''
         ].filter(Boolean);
-        const dayButtons = [0,1,2].map(offset => {
+        const dayButtons = planOffsets().map(offset => {
           const planned = plans[offset].entry && plans[offset].entry.i === meal.id;
           return `<button class="${planned ? 'planned' : ''}" data-action="choose" data-id="${meal.id}" data-day="${offset}">${dayButtonLabel(offset)}</button>`;
         }).join('');
