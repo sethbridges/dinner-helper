@@ -98,14 +98,18 @@
     .inspire:active { transform: translateY(1px) scale(.99); }
     .inspire:disabled { opacity: .42; box-shadow: none; }
 
-    .today {
-      display: none; margin: 0 0 18px; padding: 14px 15px; border: 1px solid rgba(40,95,75,.14); border-radius: 17px;
-      background: var(--sage); align-items: center; justify-content: space-between; gap: 14px;
+    .plans { display: none; margin: 0 0 18px; gap: 8px; }
+    .plans.visible { display: grid; }
+    .plan-row {
+      display: flex; align-items: center; justify-content: space-between; gap: 14px;
+      padding: 14px 15px; border: 1px solid var(--line); border-radius: 17px;
+      background: rgba(255,253,248,.78);
     }
-    .today.visible { display: flex; }
-    .today small { display:block; color: var(--green); font-weight: 800; text-transform: uppercase; letter-spacing: .08em; font-size: 10px; }
-    .today strong { display:block; margin-top: 2px; font-size: 15px; }
-    .today button { border: 0; background: transparent; color: var(--green); font-weight: 800; white-space: nowrap; }
+    .plan-row.today { background: var(--sage); border-color: rgba(40,95,75,.14); }
+    .plan-row small { display:block; color: var(--muted); font-weight: 800; text-transform: uppercase; letter-spacing: .08em; font-size: 10px; }
+    .plan-row.today small { color: var(--green); }
+    .plan-row strong { display:block; margin-top: 2px; font-size: 15px; }
+    .plan-row button { border: 0; background: transparent; color: var(--green); font-weight: 800; white-space: nowrap; }
 
     .results { display: grid; gap: 12px; }
     .empty {
@@ -122,6 +126,7 @@
     .meal-card:nth-child(3) { animation-delay: .08s; }
     .meal-card:nth-child(4) { animation-delay: .12s; }
     .meal-card:nth-child(5) { animation-delay: .16s; }
+    .meal-card.static { animation: none; }
     @keyframes rise { from { opacity:0; transform: translateY(8px); } to { opacity:1; transform:none; } }
     .meal-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; }
     .meal-number { color: var(--orange); font-family: Georgia, serif; font-size: 14px; font-style: italic; }
@@ -130,10 +135,11 @@
     .tags { display:flex; flex-wrap:wrap; gap:6px; margin: 13px 0 16px; }
     .tag { padding: 5px 8px; border-radius: 999px; background: #f0eee6; color: #596660; font-size: 11px; font-weight: 750; }
     .tag.readiness { background: var(--orange-soft); color: #8b4028; }
-    .card-actions { display:grid; grid-template-columns: 1fr auto; gap: 8px; }
+    .card-actions { display:grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; }
     .choose, .mute { min-height: 46px; border-radius: 14px; font-weight: 850; }
-    .choose { border: 0; background: var(--green); color: white; padding: 10px 14px; }
-    .mute { border: 1px solid var(--line); background: white; color: var(--muted); padding: 10px 13px; }
+    .choose { border: 0; background: var(--green); color: white; padding: 10px 8px; font-size: 13px; }
+    .choose.planned { background: var(--green-dark); }
+    .mute { grid-column: 1 / -1; border: 1px solid var(--line); background: white; color: var(--muted); padding: 10px 13px; }
 
     .toast {
       position: fixed; z-index: 10; left: 50%; bottom: calc(88px + env(safe-area-inset-bottom)); transform: translate(-50%, 18px);
@@ -176,20 +182,20 @@
     .browse-count { margin:0 0 10px; color:var(--muted); font-size:12px; font-weight:750; }
     .browse-list { display:grid; gap:8px; }
     .browse-row {
-      display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
-      padding:13px 14px; border:1px solid var(--line); border-radius:15px; background:rgba(255,253,248,.78);
+      display:grid; gap:10px; padding:13px 14px; border:1px solid var(--line); border-radius:15px;
+      background:rgba(255,253,248,.78);
     }
-    .browse-row > div { min-width:0; }
-    .browse-row.tonight { background:var(--sage); border-color:rgba(40,95,75,.14); }
+    .browse-row.planned { background:var(--sage); border-color:rgba(40,95,75,.14); }
     .browse-row strong { display:block; font-size:15px; letter-spacing:-.01em; }
     .browse-row p { margin:4px 0 0; color:var(--muted); font-size:13px; line-height:1.35; }
     .browse-row small { display:block; margin-top:6px; color:var(--muted); font-size:11px; font-weight:750; }
-    .browse-row.tonight small { color:var(--green); }
-    .browse-row button {
-      flex:0 0 auto; min-height:40px; padding:8px 11px; border:0; border-radius:12px;
-      background:var(--green); color:white; font-size:12px; font-weight:850; white-space:nowrap;
+    .browse-row.planned small { color:var(--green); }
+    .plan-days { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:6px; }
+    .plan-days button {
+      min-height:36px; padding:6px 4px; border:1px solid var(--line); border-radius:10px;
+      background:white; color:var(--ink); font-size:11px; font-weight:800;
     }
-    .browse-row button.undo { background:transparent; color:var(--green); }
+    .plan-days button.planned { background:var(--green); border-color:var(--green); color:white; }
 
     nav {
       position:fixed; z-index:5; left:50%; bottom:0; transform:translateX(-50%); width:min(100%,560px);
@@ -223,14 +229,14 @@
       </div>
       <button class="quick-filter" id="quickFilter" aria-pressed="false">⚡ Quick meals only</button>
       <button class="inspire" id="inspire" disabled>Show me dinner ideas</button>
-      <div class="today" id="today"></div>
+      <div class="plans" id="plans"></div>
       <section class="results" id="results" aria-live="polite">
         <div class="empty"><span class="big">🍽️</span>Your ideas will appear here.</div>
       </section>
     </section>
 
     <section class="browse" id="browse">
-      <div class="history-head"><h2>All meals</h2><p>The full list. Mark tonight even if a meal is in your recent rotation.</p></div>
+      <div class="history-head"><h2>All meals</h2><p>The full list. Plan tonight, tomorrow, or the next day — even if a meal is in your recent rotation.</p></div>
       <label class="browse-search"><span class="visually-hidden">Search meals</span><input type="search" id="browseSearch" placeholder="Search meals" autocomplete="off"></label>
       <div class="browse-filters" id="browseFilters">
         <button type="button" class="browse-chip selected" data-browse-protein="">All</button>
@@ -245,7 +251,8 @@
     </section>
 
     <section class="history" id="history">
-      <div class="history-head"><h2>Your rotation</h2><p>Selections are hidden for 14 days. Mutes last 7 days.</p></div>
+      <div class="history-head"><h2>Your rotation</h2><p>Selections are hidden for 14 days. Mutes last 7 days. Undo a planned night here or on Tonight.</p></div>
+      <div class="history-group"><h3>Upcoming</h3><div class="history-list" id="upcomingList"></div></div>
       <div class="history-group"><h3>Recently made</h3><div class="history-list" id="madeList"></div></div>
       <div class="history-group"><h3>Muted</h3><div class="history-list" id="mutedList"></div></div>
       <button class="clear-all" id="clearAll">Clear all saved meal data</button>
@@ -301,13 +308,33 @@
     }
     function mealById(id) { return meals.find(m => m.id === id); }
     function formatDate(ts) { return new Intl.DateTimeFormat(undefined,{month:'short',day:'numeric'}).format(new Date(ts)); }
-    function tonightEntry() {
-      const history = historyData();
-      const todayStart = new Date(); todayStart.setHours(0,0,0,0);
-      return [...history].reverse().find(x => x.t >= todayStart.getTime()) || null;
+    function startOfDay(offset = 0) {
+      const date = new Date();
+      date.setHours(0, 0, 0, 0);
+      date.setDate(date.getDate() + offset);
+      return date;
     }
-    function refreshIdeasIfShowing() {
-      if (!document.getElementById('inspire').disabled) showIdeas();
+    function dayButtonLabel(offset) {
+      if (offset === 0) return 'Tonight';
+      if (offset === 1) return 'Tomorrow';
+      return new Intl.DateTimeFormat(undefined, {weekday: 'short'}).format(startOfDay(offset));
+    }
+    function planHeading(offset) {
+      if (offset === 0) return 'Tonight’s plan';
+      if (offset === 1) return 'Tomorrow';
+      return new Intl.DateTimeFormat(undefined, {weekday: 'long', month: 'short', day: 'numeric'}).format(startOfDay(offset));
+    }
+    function entryForDay(offset) {
+      const start = startOfDay(offset).getTime();
+      const end = startOfDay(offset + 1).getTime();
+      return [...historyData()].reverse().find(x => x.t >= start && x.t < end) || null;
+    }
+    function plannedDays() {
+      return [0, 1, 2].map(offset => ({offset, entry: entryForDay(offset)}));
+    }
+    function rerenderShownIdeas() {
+      if (!document.querySelector('#results .meal-card')) return;
+      renderResults(shownIds.map(mealById).filter(Boolean), {animate: false});
     }
     function escapeHtml(value) { return String(value).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c])); }
 
@@ -350,41 +377,62 @@
       return '';
     }
 
-    function renderResults(picks) {
+    function renderResults(picks, options = {}) {
       const results = document.getElementById('results');
       if (!picks.length) {
         results.innerHTML = '<div class="empty"><span class="big">🫙</span>No eligible meals remain for this selection. Try another protein, or undo something in History.</div>';
         return;
       }
+      const plans = plannedDays();
+      const cardClass = options.animate === false ? 'meal-card static' : 'meal-card';
       results.innerHTML = picks.map((m,i) => {
         const ready = readiness(m);
-        return `<article class="meal-card">
+        const dayButtons = [0,1,2].map(offset => {
+          const planned = plans[offset].entry && plans[offset].entry.i === m.id;
+          return `<button class="choose${planned ? ' planned' : ''}" data-action="choose" data-id="${m.id}" data-day="${offset}">${dayButtonLabel(offset)}</button>`;
+        }).join('');
+        return `<article class="${cardClass}">
           <div class="meal-top"><div><span class="meal-number">Idea ${i+1}</span><h3>${escapeHtml(m.name)}</h3></div></div>
           <p>${escapeHtml(m.description)}</p>
           <div class="tags">${ready ? `<span class="tag readiness">${ready}</span>` : ''}${m.quick ? '<span class="tag">⚡ Quick</span>' : ''}${m.tags.map(t=>`<span class="tag">${escapeHtml(t)}</span>`).join('')}</div>
-          <div class="card-actions"><button class="choose" data-action="choose" data-id="${m.id}">I’ll make this</button><button class="mute" data-action="mute" data-id="${m.id}">Mute 7 days</button></div>
+          <div class="card-actions">${dayButtons}<button class="mute" data-action="mute" data-id="${m.id}">Mute 7 days</button></div>
         </article>`;
       }).join('');
     }
 
-    function chooseMeal(id) {
-      const history = historyData();
-      history.push({i:id,t:Date.now()}); writeCookie(COOKIE_HISTORY, history.slice(-40));
+    function chooseMeal(id, offset = 0) {
+      const existing = entryForDay(offset);
+      if (existing && existing.i === id) {
+        removeHistory(existing.t);
+        return;
+      }
+      const start = startOfDay(offset).getTime();
+      const end = startOfDay(offset + 1).getTime();
+      const history = historyData().filter(x => x.t < start || x.t >= end);
+      const t = offset === 0 ? Date.now() : startOfDay(offset).setHours(12, 0, 0, 0);
+      history.push({i:id, t});
+      writeCookie(COOKIE_HISTORY, history.slice(-40));
       const mutes = muteData(); delete mutes[id]; writeCookie(COOKIE_MUTES, mutes);
-      renderToday(); renderBrowse(); toast('Dinner chosen — hidden for 14 days'); refreshIdeasIfShowing();
+      renderPlans(); renderBrowse(); renderHistory(); rerenderShownIdeas();
+      toast(offset === 0 ? 'Dinner chosen — hidden for 14 days' : `${planHeading(offset)} is set`);
     }
 
     function muteMeal(id) {
       const mutes = muteData(); mutes[id] = Date.now() + 7 * DAY; writeCookie(COOKIE_MUTES, mutes);
-      toast('Muted for 7 days'); refreshIdeasIfShowing();
+      renderBrowse(); toast('Muted for 7 days');
+      if (!document.getElementById('inspire').disabled) showIdeas();
     }
 
-    function renderToday() {
-      const last = tonightEntry();
-      const box = document.getElementById('today');
-      if (!last || !mealById(last.i)) { box.className='today'; box.innerHTML=''; return; }
-      box.className='today visible';
-      box.innerHTML=`<div><small>Tonight’s plan</small><strong>${escapeHtml(mealById(last.i).name)}</strong></div><button data-undo-timestamp="${last.t}">Undo</button>`;
+    function renderPlans() {
+      const box = document.getElementById('plans');
+      const rows = plannedDays().map(({offset, entry}) => {
+        const meal = entry && mealById(entry.i);
+        if (!meal) return '';
+        return `<div class="plan-row${offset === 0 ? ' today' : ''}"><div><small>${escapeHtml(planHeading(offset))}</small><strong>${escapeHtml(meal.name)}</strong></div><button data-undo-timestamp="${entry.t}">Undo</button></div>`;
+      }).filter(Boolean);
+      if (!rows.length) { box.className = 'plans'; box.innerHTML = ''; return; }
+      box.className = 'plans visible';
+      box.innerHTML = rows.join('');
     }
 
     function renderBrowse() {
@@ -397,7 +445,7 @@
       }
       const {history, mutes} = prune();
       const recent = new Map(history.filter(x => Date.now() - x.t < 14 * DAY).map(x => [x.i, x.t]));
-      const tonight = tonightEntry();
+      const plans = plannedDays();
       const query = browseQuery.trim().toLowerCase();
       const matches = meals.filter(meal => {
         if (browseProtein && !meal.proteins.includes(browseProtein)) return false;
@@ -412,28 +460,35 @@
         return;
       }
       list.innerHTML = matches.map(meal => {
-        const isTonight = tonight && tonight.i === meal.id;
+        const plannedFor = plans.filter(plan => plan.entry && plan.entry.i === meal.id).map(plan => dayButtonLabel(plan.offset));
         const madeAt = recent.get(meal.id);
         const mutedUntil = mutes[meal.id] > Date.now() ? mutes[meal.id] : null;
         const notes = [
-          isTonight ? 'Tonight’s plan' : '',
-          !isTonight && madeAt ? `Made ${formatDate(madeAt)}` : '',
+          plannedFor.length ? plannedFor.join(', ') : '',
+          !plannedFor.length && madeAt ? `Made ${formatDate(madeAt)}` : '',
           mutedUntil ? `Muted until ${formatDate(mutedUntil)}` : '',
           meal.quick ? 'Quick' : ''
         ].filter(Boolean);
-        const action = isTonight
-          ? `<button class="undo" data-undo-timestamp="${tonight.t}">Undo</button>`
-          : `<button data-action="choose" data-id="${meal.id}">I’ll make this</button>`;
-        return `<article class="browse-row${isTonight ? ' tonight' : ''}">
+        const dayButtons = [0,1,2].map(offset => {
+          const planned = plans[offset].entry && plans[offset].entry.i === meal.id;
+          return `<button class="${planned ? 'planned' : ''}" data-action="choose" data-id="${meal.id}" data-day="${offset}">${dayButtonLabel(offset)}</button>`;
+        }).join('');
+        return `<article class="browse-row${plannedFor.length ? ' planned' : ''}">
           <div><strong>${escapeHtml(meal.name)}</strong><p>${escapeHtml(meal.description)}</p>${notes.length ? `<small>${notes.map(escapeHtml).join(' · ')}</small>` : ''}</div>
-          ${action}
+          <div class="plan-days">${dayButtons}</div>
         </article>`;
       }).join('');
     }
 
     function renderHistory() {
       const {history,mutes}=prune();
-      const made = [...history].reverse();
+      const upcomingStart = startOfDay(1).getTime();
+      const upcoming = history.filter(x => x.t >= upcomingStart).sort((a,b) => a.t - b.t);
+      const made = history.filter(x => x.t < upcomingStart).reverse();
+      document.getElementById('upcomingList').innerHTML = upcoming.length ? upcoming.map(x => {
+        const meal=mealById(x.i); if(!meal) return '';
+        return `<div class="history-row"><div><strong>${escapeHtml(meal.name)}</strong><small>Planned for ${formatDate(x.t)}</small></div><button data-remove-history="${x.t}">Undo</button></div>`;
+      }).join('') : '<div class="empty">Nothing planned ahead.</div>';
       document.getElementById('madeList').innerHTML = made.length ? made.map(x => {
         const meal=mealById(x.i); if(!meal) return '';
         return `<div class="history-row"><div><strong>${escapeHtml(meal.name)}</strong><small>Made ${formatDate(x.t)}</small></div><button data-remove-history="${x.t}">Undo</button></div>`;
@@ -446,7 +501,9 @@
     }
 
     function removeHistory(timestamp) {
-      writeCookie(COOKIE_HISTORY, historyData().filter(x=>x.t!==Number(timestamp))); renderToday(); renderHistory(); renderBrowse(); toast('Selection removed');
+      writeCookie(COOKIE_HISTORY, historyData().filter(x=>x.t!==Number(timestamp)));
+      renderPlans(); renderHistory(); renderBrowse(); rerenderShownIdeas();
+      toast('Selection removed');
     }
     function unmute(id) { const m=muteData(); delete m[id]; writeCookie(COOKIE_MUTES,m); renderHistory(); renderBrowse(); toast('Meal unmuted'); }
 
@@ -485,15 +542,13 @@
     document.getElementById('inspire').addEventListener('click',showIdeas);
     document.getElementById('results').addEventListener('click', event => {
       const button=event.target.closest('[data-action]'); if(!button) return;
-      button.dataset.action==='choose' ? chooseMeal(button.dataset.id) : muteMeal(button.dataset.id);
+      button.dataset.action==='choose' ? chooseMeal(button.dataset.id, Number(button.dataset.day || 0)) : muteMeal(button.dataset.id);
     });
-    document.getElementById('today').addEventListener('click',e=>{const b=e.target.closest('[data-undo-timestamp]');if(b)removeHistory(b.dataset.undoTimestamp);});
+    document.getElementById('plans').addEventListener('click',e=>{const b=e.target.closest('[data-undo-timestamp]');if(b)removeHistory(b.dataset.undoTimestamp);});
     document.getElementById('browse').addEventListener('click', event => {
       const choose = event.target.closest('[data-action="choose"]');
-      const undo = event.target.closest('[data-undo-timestamp]');
       const chip = event.target.closest('[data-browse-protein]');
-      if (choose) chooseMeal(choose.dataset.id);
-      if (undo) removeHistory(undo.dataset.undoTimestamp);
+      if (choose) chooseMeal(choose.dataset.id, Number(choose.dataset.day || 0));
       if (chip) {
         browseProtein = chip.dataset.browseProtein;
         document.querySelectorAll('[data-browse-protein]').forEach(b => b.classList.toggle('selected', b === chip));
@@ -512,7 +567,7 @@
     document.getElementById('historyShortcut').addEventListener('click',()=>switchView('history'));
     document.getElementById('clearAll').addEventListener('click',()=>{
       if(!confirm('Clear all meal history and mutes?')) return;
-      writeCookie(COOKIE_HISTORY,[]); writeCookie(COOKIE_MUTES,{}); renderHistory(); renderBrowse(); renderToday(); toast('Saved meal data cleared');
+      writeCookie(COOKIE_HISTORY,[]); writeCookie(COOKIE_MUTES,{}); renderHistory(); renderBrowse(); renderPlans(); rerenderShownIdeas(); toast('Saved meal data cleared');
     });
 
     async function loadMeals() {
@@ -530,7 +585,7 @@
         meals = payload.meals;
         mealsLoaded = true;
         document.getElementById('inspire').disabled = selected.size === 0 && !quickOnly;
-        prune(); renderToday(); renderBrowse();
+        prune(); renderPlans(); renderBrowse();
       } catch (error) {
         console.error(error);
         document.getElementById('results').innerHTML = '<div class="empty"><span class="big">⚠️</span>I couldn’t load meals.json. Check that it is valid JSON and uploaded beside index.html.</div>';
