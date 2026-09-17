@@ -1,0 +1,25 @@
+{
+  "id": "fried-chicken",
+  "title": "Crispy fried chicken",
+  "serves": "4 to 6",
+  "time": "1 hour plus brine",
+  "sourceName": "Serious Eats",
+  "sourceUrl": "https://www.seriouseats.com/the-food-lab-southern-fried-chicken-recipe",
+  "ingredients": [
+    "3 lb chicken pieces",
+    "2 cups buttermilk",
+    "1 tbsp hot sauce",
+    "2 cups flour",
+    "2 tbsp salt, divided",
+    "2 tsp black pepper",
+    "2 tsp paprika",
+    "1 tsp garlic powder",
+    "Oil for frying"
+  ],
+  "steps": [
+    "Soak chicken in buttermilk, hot sauce, and 1 tsp salt at least 1 hour.",
+    "Mix flour with remaining salt and spices.",
+    "Dredge chicken, rest 10 minutes, then dredge again.",
+    "Fry at 325–350°F until deep golden and 165°F (175°F for thighs), 12–18 minutes depending on size. Drain on a rack."
+  ]
+}

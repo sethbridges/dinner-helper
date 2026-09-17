@@ -1,0 +1,32 @@
+{
+  "id": "halal-cart",
+  "title": "Halal-cart chicken and rice",
+  "serves": "4 to 6",
+  "time": "1 hour",
+  "sourceName": "Serious Eats",
+  "sourceUrl": "https://www.seriouseats.com/serious-eats-halal-cart-style-chicken-and-rice-white-sauce-recipe",
+  "ingredients": [
+    "2 lb boneless chicken thighs",
+    "1/4 cup lemon juice",
+    "2 tbsp oregano",
+    "4 garlic cloves",
+    "1/4 cup olive oil, plus more for cooking",
+    "Salt and pepper",
+    "2 cups long-grain rice",
+    "1 tsp turmeric",
+    "2 tbsp butter",
+    "3 cups chicken broth",
+    "1/2 cup mayo",
+    "1/2 cup Greek yogurt",
+    "1 tbsp sugar",
+    "1 tbsp white vinegar",
+    "Shredded lettuce, tomato, pita, and hot sauce"
+  ],
+  "steps": [
+    "Blend lemon, oregano, garlic, oil, salt, and pepper. Marinate chicken 1–4 hours.",
+    "Brown chicken in a skillet; finish at 165°F. Chop into chunks and return to pan juices.",
+    "Cook rice with butter, turmeric, and broth until tender.",
+    "Stir mayo, yogurt, sugar, vinegar, salt, and a splash of lemon for white sauce.",
+    "Serve chicken over yellow rice with salad, pita, white sauce, and hot sauce."
+  ]
+}

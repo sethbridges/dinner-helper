@@ -15,7 +15,10 @@ You normally only need to edit `meals.json`. Every entry has this structure:
   "tags": ["sandwich", "crowd-pleaser"],
   "quick": true,
   "noProtein": "defrost",
-  "recipe": "https://example.com/chicken-bacon-ranch"
+  "recipe": [
+    "chicken-bacon-ranch",
+    "https://www.thepioneerwoman.com/food-cooking/"
+  ]
 }
 ```
 
@@ -26,7 +29,9 @@ You normally only need to edit `meals.json`. Every entry has this structure:
 - `tags`: Short descriptive labels displayed on the meal card.
 - `quick`: Set to `true` to include it in the **Quick meals only** filter; otherwise use `false`.
 - `noProtein`: Use `"ready"` when no thawing is required, `"defrost"` when it works by defrosting a freezer staple, or `null` to keep it out of **No protein ready**.
-- `recipe`: Optional. An `http` or `https` link to the recipe. Omit it, or use `null`, when you do not have a link yet. When it is set, the app shows a **Recipe** link on the meal card.
+- `recipe`: Optional array. Each item is either a local recipe id (loads `recipe.html?id=...` from `recipes/id.json`) or an `http`/`https` link. Omit the field when you do not have a recipe yet. Simple dinners like pizza, nuggets, and nachos can stay without one.
+
+Local recipes live in the `recipes/` folder. `recipe.html` renders one file at a time and always includes the original source link. The write-ups on that page are short home-cook versions so you can cook without the ads.
 
 To add a meal, copy an entire meal object, place a comma between it and the neighboring object, then give it a new unique `id`. JSON does not allow comments or a comma after the final meal object.
 

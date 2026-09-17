@@ -1,0 +1,26 @@
+{
+  "id": "stroganoff",
+  "title": "Beef stroganoff",
+  "serves": "4",
+  "time": "35 minutes",
+  "sourceName": "The Kitchn",
+  "sourceUrl": "https://www.thekitchn.com/recipe-one-pot-weeknight-beef-stroganoff-249761",
+  "ingredients": [
+    "1 lb ground beef or sliced steak",
+    "8 oz mushrooms, sliced",
+    "1 onion, chopped",
+    "2 tbsp butter",
+    "2 tbsp flour",
+    "2 cups beef broth",
+    "8 oz egg noodles",
+    "1 tsp paprika",
+    "1 tsp Dijon",
+    "1/2 cup sour cream",
+    "Salt and pepper"
+  ],
+  "steps": [
+    "Brown beef; remove extra fat. Add mushrooms and onion; cook until browned.",
+    "Stir in butter and flour, then broth, paprika, and noodles. Simmer until noodles are tender.",
+    "Off heat, stir in Dijon and sour cream. Season and serve."
+  ]
+}

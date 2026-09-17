@@ -1,0 +1,23 @@
+{
+  "id": "cauliflower-soup",
+  "title": "Creamy cauliflower soup",
+  "serves": "4",
+  "time": "35 minutes",
+  "sourceName": "Serious Eats",
+  "sourceUrl": "https://www.seriouseats.com/creamy-cauliflower-bacon-soup-recipe",
+  "ingredients": [
+    "1 large cauliflower, chopped",
+    "1 onion, chopped",
+    "2 garlic cloves",
+    "2 tbsp butter",
+    "4 cups broth",
+    "1/2 cup cream or milk",
+    "Salt, pepper, nutmeg",
+    "Toast or grilled cheese"
+  ],
+  "steps": [
+    "Cook onion in butter until soft. Add garlic, then cauliflower and broth.",
+    "Simmer until very tender, 15–20 minutes. Blend smooth.",
+    "Add cream, salt, pepper, and a pinch of nutmeg. Serve with toast."
+  ]
+}

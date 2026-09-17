@@ -1,0 +1,20 @@
+{
+  "id": "steak-quesadilla",
+  "title": "Steak quesadillas",
+  "serves": "4",
+  "time": "20 minutes",
+  "sourceName": "The Kitchn",
+  "sourceUrl": "https://www.thekitchn.com/steak-quesadilla-recipe-23213979",
+  "ingredients": [
+    "2 cups leftover steak, chopped (or quickly sear 3/4 lb steak)",
+    "2 cups shredded cheese (Oaxaca, Monterey Jack, or cheddar)",
+    "8 flour tortillas",
+    "Oil or butter",
+    "Salsa and sour cream"
+  ],
+  "steps": [
+    "Scatter cheese and steak on 4 tortillas. Top with remaining tortillas.",
+    "Cook in a lightly oiled skillet over medium until crisp and melted, flipping once.",
+    "Cut into wedges. Serve with salsa and sour cream."
+  ]
+}

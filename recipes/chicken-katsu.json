@@ -1,0 +1,24 @@
+{
+  "id": "chicken-katsu",
+  "title": "Chicken katsu",
+  "serves": "4",
+  "time": "35 minutes",
+  "sourceName": "Serious Eats",
+  "sourceUrl": "https://www.seriouseats.com/air-fryer-chicken-katsu-recipe-8645406",
+  "ingredients": [
+    "4 boneless chicken breasts or thighs, pounded 1/2 inch thick",
+    "Salt and pepper",
+    "1/2 cup flour",
+    "2 eggs, beaten",
+    "2 cups panko",
+    "Oil for frying or cooking spray for air fryer",
+    "Cooked rice",
+    "Shredded cabbage",
+    "Tonkatsu sauce (store-bought or ketchup + Worcestershire + soy)"
+  ],
+  "steps": [
+    "Season chicken. Dredge in flour, egg, then panko, pressing crumbs on.",
+    "Shallow-fry in 1/2 inch oil until deep golden and 165°F, or air-fry at 400°F until crisp, turning once.",
+    "Rest 5 minutes. Slice and serve with rice, cabbage, and tonkatsu sauce."
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "id": "baked-pasta",
+  "title": "Baked ziti without ricotta",
+  "serves": "6",
+  "time": "50 minutes",
+  "sourceName": "Serious Eats",
+  "sourceUrl": "https://www.seriouseats.com/best-baked-ziti-parmesan-cream-recipe",
+  "ingredients": [
+    "1 lb ziti or penne",
+    "4 cups marinara",
+    "2 cups shredded mozzarella",
+    "1/2 cup grated Parmesan",
+    "Optional: browned sausage or beef",
+    "Salt, pepper, basil"
+  ],
+  "steps": [
+    "Heat oven to 400°F. Boil pasta 2 minutes shy of done.",
+    "Toss pasta with 3 cups sauce, half the mozzarella, Parmesan, and meat if using.",
+    "Spread in a 9x13. Top with remaining sauce and mozzarella.",
+    "Bake 20–25 minutes until bubbly. Rest 10 minutes. Basil on top."
+  ]
+}

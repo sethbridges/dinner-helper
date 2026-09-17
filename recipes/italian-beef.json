@@ -1,0 +1,25 @@
+{
+  "id": "italian-beef",
+  "title": "Italian beef sandwiches",
+  "serves": "6",
+  "time": "3 to 4 hours",
+  "sourceName": "Serious Eats",
+  "sourceUrl": "https://www.seriouseats.com/homemade-italian-beef-sandwich",
+  "ingredients": [
+    "3 lb beef chuck or roast",
+    "1 onion, sliced",
+    "4 garlic cloves",
+    "1 tbsp Italian seasoning",
+    "1 tsp black pepper",
+    "4 cups beef broth",
+    "Pepperoncini plus a splash of brine",
+    "Provolone",
+    "Italian rolls",
+    "Giardiniera"
+  ],
+  "steps": [
+    "Season beef. Brown in a pot, then add onion, garlic, seasoning, broth, and pepperoncini.",
+    "Braise covered at 300°F until shreddable, 3–4 hours (or slow cooker on low 8 hours).",
+    "Shred meat into the juices. Pile on rolls with provolone and giardiniera. Dip in jus."
+  ]
+}

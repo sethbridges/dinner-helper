@@ -1,0 +1,28 @@
+{
+  "id": "greek-salad-chicken",
+  "title": "Greek salad with chicken",
+  "serves": "4",
+  "time": "35 minutes",
+  "sourceName": "Half Baked Harvest",
+  "sourceUrl": "https://www.halfbakedharvest.com/greek-chicken-chopped-salad/",
+  "ingredients": [
+    "1 1/2 lb boneless chicken breasts or thighs, cut into chunks",
+    "3 tbsp olive oil, divided",
+    "1 tsp dried oregano",
+    "1 lemon, zest and juice",
+    "2 garlic cloves, minced",
+    "Salt and black pepper",
+    "1 large romaine heart, chopped",
+    "1 pint cherry tomatoes, halved",
+    "2 cucumbers, chopped",
+    "1/2 cup kalamata olives",
+    "6 oz feta, crumbled",
+    "1 can chickpeas, drained (optional)"
+  ],
+  "steps": [
+    "Toss chicken with 1 tbsp oil, oregano, half the lemon, garlic, salt, and pepper. Rest 15 minutes.",
+    "Sear chicken in a hot skillet until browned and cooked through, 6–8 minutes. Cool slightly.",
+    "Toss romaine, tomatoes, cucumber, olives, chickpeas, and feta with remaining oil and lemon.",
+    "Top with chicken and more black pepper."
+  ]
+}

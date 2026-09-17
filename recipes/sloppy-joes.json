@@ -1,0 +1,25 @@
+{
+  "id": "sloppy-joes",
+  "title": "Sloppy joes",
+  "serves": "4",
+  "time": "25 minutes",
+  "sourceName": "Serious Eats",
+  "sourceUrl": "https://www.seriouseats.com/sloppy-joes-recipe-11803151",
+  "ingredients": [
+    "1 lb ground beef",
+    "1 onion, chopped",
+    "2 garlic cloves",
+    "1/2 cup tomato sauce or marinara",
+    "1/4 cup ketchup",
+    "1 tbsp Worcestershire",
+    "1 tbsp brown sugar",
+    "1 tsp mustard",
+    "Salt",
+    "4 buns, toasted"
+  ],
+  "steps": [
+    "Brown beef well, breaking it up. Add onion and garlic; cook until soft.",
+    "Stir in tomato sauce, ketchup, Worcestershire, sugar, and mustard. Simmer until thick, 5–8 minutes.",
+    "Taste for salt. Spoon onto toasted buns."
+  ]
+}

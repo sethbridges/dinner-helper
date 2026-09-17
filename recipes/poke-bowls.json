@@ -1,0 +1,22 @@
+{
+  "id": "poke-bowls",
+  "title": "Tuna poke bowls",
+  "serves": "4",
+  "time": "25 minutes",
+  "sourceName": "Serious Eats",
+  "sourceUrl": "https://www.seriouseats.com/ahi-poke-hawaiian-raw-tuna-salad-recipe",
+  "ingredients": [
+    "1 lb sushi-grade tuna, cubed",
+    "3 tbsp soy sauce",
+    "1 tsp sesame oil",
+    "1 tsp rice vinegar",
+    "1 tsp honey or sugar",
+    "2 scallions, sliced",
+    "Cooked rice, cooled a bit",
+    "Cucumber, avocado, edamame, sesame seeds, mayo mixed with sriracha"
+  ],
+  "steps": [
+    "Stir soy, sesame oil, vinegar, honey, and scallions. Toss with tuna. Chill 10 minutes.",
+    "Build bowls: rice, tuna, toppings, spicy mayo."
+  ]
+}

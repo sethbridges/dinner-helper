@@ -1,0 +1,25 @@
+{
+  "id": "hamburger-helper",
+  "title": "Homemade Hamburger Helper",
+  "serves": "4",
+  "time": "30 minutes",
+  "sourceName": "The Kitchn",
+  "sourceUrl": "https://www.thekitchn.com/homemade-hamburger-helper-recipe-23584314",
+  "ingredients": [
+    "1 lb ground beef",
+    "1 onion, chopped",
+    "2 tsp paprika",
+    "1 tsp garlic powder",
+    "1 tbsp tomato paste",
+    "2 1/2 cups beef broth",
+    "1 cup milk",
+    "2 cups dry elbow macaroni",
+    "2 cups shredded cheddar",
+    "Salt and pepper"
+  ],
+  "steps": [
+    "Brown beef and onion. Stir in spices and tomato paste.",
+    "Add broth, milk, and pasta. Simmer, stirring, until pasta is tender, 12–15 minutes.",
+    "Stir in cheddar off heat. Season and serve."
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "shawarma-bowls",
+  "title": "Chicken shawarma bowls",
+  "serves": "4",
+  "time": "45 minutes",
+  "sourceName": "Serious Eats",
+  "sourceUrl": "https://www.seriouseats.com/sheet-pan-chicken-shawarma-recipe-12064429",
+  "ingredients": [
+    "2 lb bone-in or boneless chicken thighs",
+    "3 tbsp olive oil",
+    "2 tsp cumin",
+    "2 tsp paprika",
+    "1 tsp coriander",
+    "1/2 tsp turmeric",
+    "1/2 tsp cinnamon",
+    "3 garlic cloves, minced",
+    "Juice of 1 lemon",
+    "Salt",
+    "Cooked rice or yellow rice",
+    "1 cup yogurt mixed with 2 tbsp tahini, lemon, and salt",
+    "Cucumber, tomato, herbs, and pita"
+  ],
+  "steps": [
+    "Mix oil, spices, garlic, lemon, and salt. Coat chicken and marinate at least 30 minutes.",
+    "Roast at 425°F until browned and cooked through, 25–35 minutes. Slice.",
+    "Serve over rice with tahini yogurt, vegetables, herbs, and pita."
+  ]
+}

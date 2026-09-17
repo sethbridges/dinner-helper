@@ -1,0 +1,29 @@
+{
+  "id": "chili",
+  "title": "Beef-and-bean chili",
+  "serves": "6",
+  "time": "1 hour 15 minutes",
+  "sourceName": "Serious Eats",
+  "sourceUrl": "https://www.seriouseats.com/the-best-chili-recipe",
+  "ingredients": [
+    "2 tbsp oil",
+    "2 lb ground beef",
+    "1 large onion, chopped",
+    "4 garlic cloves",
+    "3 tbsp chili powder",
+    "1 tbsp cumin",
+    "1 tsp oregano",
+    "2 tbsp tomato paste",
+    "1 28-oz can crushed tomatoes",
+    "2 cans beans, drained",
+    "1 cup beef broth",
+    "Salt",
+    "Cheese, onion, sour cream"
+  ],
+  "steps": [
+    "Brown beef in oil; add onion until soft, then garlic.",
+    "Stir in spices and tomato paste 1 minute.",
+    "Add tomatoes, beans, and broth. Simmer 45 minutes, stirring now and then.",
+    "Season. Serve with toppings."
+  ]
+}

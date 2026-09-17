@@ -109,7 +109,14 @@
     .plan-row small { display:block; color: var(--muted); font-weight: 800; text-transform: uppercase; letter-spacing: .08em; font-size: 10px; }
     .plan-row.today small { color: var(--green); }
     .plan-row strong { display:block; margin-top: 2px; font-size: 15px; }
-    .plan-row .recipe-link { margin-top: 6px; font-size: 12px; }
+    .recipe-links { display:flex; flex-wrap:wrap; gap:6px 12px; margin-top:8px; }
+    .recipe-link {
+      display: inline-block; color: var(--green); font-size: 13px; font-weight: 800;
+      text-decoration: none;
+    }
+    .recipe-link:hover { text-decoration: underline; }
+    .plan-row .recipe-links { margin-top: 6px; }
+    .plan-row .recipe-link, .browse-row .recipe-link { margin-top: 0; font-size: 12px; }
     .plan-row button { border: 0; background: transparent; color: var(--green); font-weight: 800; white-space: nowrap; }
 
     .results { display: grid; gap: 12px; }
@@ -133,11 +140,6 @@
     .meal-number { color: var(--orange); font-family: Georgia, serif; font-size: 14px; font-style: italic; }
     .meal-card h3 { margin: 4px 0 7px; font-family: Georgia, "Times New Roman", serif; font-size: 24px; line-height: 1.1; letter-spacing: -.025em; }
     .meal-card p { margin: 0; color: var(--muted); font-size: 14px; line-height: 1.42; }
-    .recipe-link {
-      display: inline-block; margin-top: 8px; color: var(--green); font-size: 13px; font-weight: 800;
-      text-decoration: none;
-    }
-    .recipe-link:hover { text-decoration: underline; }
     .tags { display:flex; flex-wrap:wrap; gap:6px; margin: 13px 0 16px; }
     .tag { padding: 5px 8px; border-radius: 999px; background: #f0eee6; color: #596660; font-size: 11px; font-weight: 750; }
     .tag.readiness { background: var(--orange-soft); color: #8b4028; }
@@ -195,7 +197,7 @@
     .browse-row.planned { background:var(--sage); border-color:rgba(40,95,75,.14); }
     .browse-row strong { display:block; font-size:15px; letter-spacing:-.01em; }
     .browse-row p { margin:4px 0 0; color:var(--muted); font-size:13px; line-height:1.35; }
-    .browse-row .recipe-link { margin-top: 6px; font-size: 12px; }
+    .browse-row .recipe-links { margin-top: 6px; }
     .browse-row small { display:block; margin-top:6px; color:var(--muted); font-size:11px; font-weight:750; }
     .browse-row.planned small { color:var(--green); }
     .plan-days { display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:6px; }
@@ -366,9 +368,25 @@
       } catch {}
       return '';
     }
+    function recipeId(value) {
+      const raw = String(value || '').trim();
+      if (!raw || recipeHref(raw)) return '';
+      const id = raw.replace(/^.*\//, '').replace(/\.json$/i, '');
+      return /^[a-z0-9-]+$/.test(id) ? id : '';
+    }
+    function recipeEntries(meal) {
+      const raw = meal && meal.recipe;
+      if (raw == null || raw === '') return [];
+      return (Array.isArray(raw) ? raw : [raw]).filter(item => item != null && item !== '');
+    }
     function recipeLinkHtml(meal) {
-      const href = recipeHref(meal.recipe);
-      return href ? `<a class="recipe-link" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">Recipe</a>` : '';
+      const locals = recipeEntries(meal).map(item => recipeId(item)).filter(Boolean);
+      const unique = [...new Set(locals)];
+      const links = unique.map(id => {
+        const label = unique.length === 1 ? 'Recipe' : id.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+        return `<a class="recipe-link" href="recipe.html?id=${encodeURIComponent(id)}">${escapeHtml(label)}</a>`;
+      });
+      return links.length ? `<div class="recipe-links">${links.join('')}</div>` : '';
     }
 
     function randomize(array) {
@@ -608,8 +626,10 @@
         for (const meal of payload.meals) {
           if (!meal.id || !meal.name || !Array.isArray(meal.proteins) || !Array.isArray(meal.tags)) throw new Error('A meal entry is incomplete');
           if (ids.has(meal.id)) throw new Error(`Duplicate meal id: ${meal.id}`);
-          if (meal.recipe != null && meal.recipe !== '' && !recipeHref(meal.recipe)) {
-            console.warn(`Invalid recipe URL for ${meal.id}`);
+          if (meal.recipe != null && meal.recipe !== '') {
+            recipeEntries(meal).forEach(item => {
+              if (!recipeHref(item) && !recipeId(item)) console.warn(`Invalid recipe entry for ${meal.id}: ${item}`);
+            });
           }
           ids.add(meal.id);
         }

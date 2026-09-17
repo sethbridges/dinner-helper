@@ -13,7 +13,11 @@
         "component-friendly"
       ],
       "quick": false,
-      "noProtein": null
+      "noProtein": null,
+      "recipe": [
+        "greek-salad-chicken",
+        "https://www.halfbakedharvest.com/greek-chicken-chopped-salad/"
+      ]
     },
     {
       "id": "greek-chicken-hummus",
@@ -27,7 +31,12 @@
         "build-your-own"
       ],
       "quick": false,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "greek-chicken-hummus",
+        "https://www.halfbakedharvest.com/chicken-tzatziki-bowls/",
+        "https://www.halfbakedharvest.com/chicken-shawarma-hummus-bowl/"
+      ]
     },
     {
       "id": "shawarma-bowls",
@@ -41,7 +50,11 @@
         "build-your-own"
       ],
       "quick": false,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "shawarma-bowls",
+        "https://www.seriouseats.com/sheet-pan-chicken-shawarma-recipe-12064429"
+      ]
     },
     {
       "id": "halal-cart",
@@ -55,7 +68,11 @@
         "rice bowl"
       ],
       "quick": false,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "halal-cart",
+        "https://www.seriouseats.com/serious-eats-halal-cart-style-chicken-and-rice-white-sauce-recipe"
+      ]
     },
     {
       "id": "chicken-katsu",
@@ -69,7 +86,11 @@
         "Japanese"
       ],
       "quick": false,
-      "noProtein": null
+      "noProtein": null,
+      "recipe": [
+        "chicken-katsu",
+        "https://www.seriouseats.com/air-fryer-chicken-katsu-recipe-8645406"
+      ]
     },
     {
       "id": "chicken-piccata",
@@ -83,7 +104,12 @@
         "bright"
       ],
       "quick": true,
-      "noProtein": null
+      "noProtein": null,
+      "recipe": [
+        "chicken-piccata",
+        "https://www.seriouseats.com/chicken-piccata-italian-fried-cutlet-recipe",
+        "https://www.seriouseats.com/sheet-pan-chicken-piccata-recipe-11785177"
+      ]
     },
     {
       "id": "indian-chicken",
@@ -97,7 +123,13 @@
         "rotation"
       ],
       "quick": false,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "butter-chicken",
+        "tikka-masala",
+        "https://www.thekitchn.com/butter-chicken-recipe-23700240",
+        "https://www.thekitchn.com/chicken-tikka-masala-recipe-23686912"
+      ]
     },
     {
       "id": "thai-curry",
@@ -111,7 +143,12 @@
         "one-pot"
       ],
       "quick": false,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "thai-curry",
+        "https://www.thekitchn.com/panang-curry-recipe-23279044",
+        "https://www.seriouseats.com/panang-neua-thai-panang-curry-with-beef"
+      ]
     },
     {
       "id": "lemongrass-chicken",
@@ -125,7 +162,11 @@
         "rice bowl"
       ],
       "quick": false,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "lemongrass-chicken",
+        "https://www.thekitchn.com/vietnamese-lemongrass-chicken-23738618"
+      ]
     },
     {
       "id": "jerk-chicken",
@@ -139,7 +180,11 @@
         "grill"
       ],
       "quick": false,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "jerk-chicken",
+        "https://www.seriouseats.com/jerk-chicken"
+      ]
     },
     {
       "id": "peri-peri",
@@ -153,7 +198,11 @@
         "sheet pan"
       ],
       "quick": false,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "peri-peri",
+        "https://www.thekitchn.com/peri-peri-chicken-recipe-23770377"
+      ]
     },
     {
       "id": "chicken-bacon-ranch",
@@ -167,7 +216,11 @@
         "crowd-pleaser"
       ],
       "quick": true,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "chicken-bacon-ranch",
+        "https://www.thepioneerwoman.com/food-cooking/recipes/a11652/chicken-bacon-ranch-panini/"
+      ]
     },
     {
       "id": "fried-chicken",
@@ -181,7 +234,11 @@
         "project"
       ],
       "quick": false,
-      "noProtein": null
+      "noProtein": null,
+      "recipe": [
+        "fried-chicken",
+        "https://www.seriouseats.com/the-food-lab-southern-fried-chicken-recipe"
+      ]
     },
     {
       "id": "cajun-parm-pasta",
@@ -189,7 +246,11 @@
       "proteins": [
         "chicken"
       ],
-      "recipe": "https://www.halfbakedharvest.com/parmesan-chicken-pasta",
+      "recipe": [
+        "cajun-parm-pasta",
+        "https://www.halfbakedharvest.com/parmesan-chicken-pasta",
+        "https://www.halfbakedharvest.com/cajun-chicken-fettuccine-alfredo/"
+      ],
       "description": "Creamy Cajun chicken pasta with plenty of Parmesan.",
       "tags": [
         "pasta",
@@ -238,7 +299,11 @@
         "slow-cooked"
       ],
       "quick": false,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "italian-beef",
+        "https://www.seriouseats.com/homemade-italian-beef-sandwich"
+      ]
     },
     {
       "id": "reubens",
@@ -252,7 +317,11 @@
         "griddled"
       ],
       "quick": false,
-      "noProtein": null
+      "noProtein": null,
+      "recipe": [
+        "reubens",
+        "https://www.seriouseats.com/reuben-sandwich-corned-beef-rye-recipe"
+      ]
     },
     {
       "id": "french-dip",
@@ -266,7 +335,11 @@
         "easy"
       ],
       "quick": true,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "french-dip",
+        "https://www.seriouseats.com/french-dip-sandwich-recipe-8605324"
+      ]
     },
     {
       "id": "cheesesteaks",
@@ -280,7 +353,11 @@
         "griddle"
       ],
       "quick": true,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "cheesesteaks",
+        "https://www.seriouseats.com/philly-cheesesteak-recipe-7546830"
+      ]
     },
     {
       "id": "burgers",
@@ -308,7 +385,12 @@
         "sandwich"
       ],
       "quick": true,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "sloppy-joes",
+        "https://www.seriouseats.com/sloppy-joes-recipe-11803151",
+        "https://www.thekitchn.com/sloppy-joes-are-the-only-weeknight-sandwich-busy-parents-need-22943263"
+      ]
     },
     {
       "id": "steak-au-poivre",
@@ -322,7 +404,11 @@
         "special"
       ],
       "quick": false,
-      "noProtein": null
+      "noProtein": null,
+      "recipe": [
+        "steak-au-poivre",
+        "https://www.seriouseats.com/steak-au-poivre"
+      ]
     },
     {
       "id": "short-ribs",
@@ -336,7 +422,11 @@
         "comfort"
       ],
       "quick": false,
-      "noProtein": null
+      "noProtein": null,
+      "recipe": [
+        "short-ribs",
+        "https://www.seriouseats.com/red-wine-braised-beef-short-ribs-recipe"
+      ]
     },
     {
       "id": "meatloaf",
@@ -350,7 +440,11 @@
         "oven"
       ],
       "quick": false,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "meatloaf",
+        "https://www.thekitchn.com/traditional-meatloaf-recipe-23405988"
+      ]
     },
     {
       "id": "meatballs-pasta",
@@ -364,7 +458,11 @@
         "family favorite"
       ],
       "quick": false,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "meatballs-pasta",
+        "https://www.seriouseats.com/italian-american-beef-pork-meatballs-red-tomato-sauce-recipe"
+      ]
     },
     {
       "id": "stroganoff",
@@ -378,7 +476,11 @@
         "stovetop"
       ],
       "quick": false,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "stroganoff",
+        "https://www.thekitchn.com/recipe-one-pot-weeknight-beef-stroganoff-249761"
+      ]
     },
     {
       "id": "bolognese",
@@ -393,7 +495,11 @@
         "batch-friendly"
       ],
       "quick": false,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "bolognese",
+        "https://www.seriouseats.com/the-best-slow-cooked-bolognese-sauce-recipe"
+      ]
     },
     {
       "id": "korean-beef",
@@ -407,7 +513,12 @@
         "quick"
       ],
       "quick": true,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "korean-beef",
+        "https://www.thekitchn.com/korean-beef-bowl-recipe-23772102",
+        "https://www.halfbakedharvest.com/gochujang-beef-bowls/"
+      ]
     },
     {
       "id": "hamburger-helper",
@@ -421,7 +532,11 @@
         "easy"
       ],
       "quick": true,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "hamburger-helper",
+        "https://www.thekitchn.com/homemade-hamburger-helper-recipe-23584314"
+      ]
     },
     {
       "id": "chili",
@@ -435,7 +550,11 @@
         "batch-friendly"
       ],
       "quick": false,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "chili",
+        "https://www.seriouseats.com/the-best-chili-recipe"
+      ]
     },
     {
       "id": "tamale-pie",
@@ -449,7 +568,11 @@
         "comfort"
       ],
       "quick": false,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "tamale-pie",
+        "https://www.thepioneerwoman.com/food-cooking/recipes/a40118030/tamale-pie-recipe/"
+      ]
     },
     {
       "id": "carne-asada",
@@ -463,7 +586,11 @@
         "Mexican"
       ],
       "quick": false,
-      "noProtein": null
+      "noProtein": null,
+      "recipe": [
+        "carne-asada",
+        "https://www.seriouseats.com/carne-asada-food-lab-recipe-kenji"
+      ]
     },
     {
       "id": "steak-quesadilla",
@@ -477,7 +604,11 @@
         "griddled"
       ],
       "quick": true,
-      "noProtein": null
+      "noProtein": null,
+      "recipe": [
+        "steak-quesadilla",
+        "https://www.thekitchn.com/steak-quesadilla-recipe-23213979"
+      ]
     },
     {
       "id": "corned-beef",
@@ -491,7 +622,11 @@
         "slow-cooked"
       ],
       "quick": false,
-      "noProtein": null
+      "noProtein": null,
+      "recipe": [
+        "corned-beef",
+        "https://www.seriouseats.com/slow-cooker-corned-beef-and-cabbage-recipe-11923867"
+      ]
     },
     {
       "id": "aloo-keema",
@@ -505,7 +640,10 @@
         "one-pot"
       ],
       "quick": false,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "aloo-keema"
+      ]
     },
     {
       "id": "arthur-ave",
@@ -533,7 +671,10 @@
         "grill"
       ],
       "quick": false,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "lemongrass-pork-burger"
+      ]
     },
     {
       "id": "caramel-pork",
@@ -547,7 +688,11 @@
         "quick"
       ],
       "quick": true,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "caramel-pork",
+        "https://www.halfbakedharvest.com/banh-mi-rice-bowls/"
+      ]
     },
     {
       "id": "pulled-pork",
@@ -561,7 +706,11 @@
         "batch-friendly"
       ],
       "quick": false,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "pulled-pork",
+        "https://www.thekitchn.com/how-to-make-pulled-pork-in-the-slow-cooker-232724"
+      ]
     },
     {
       "id": "pork-tonkatsu",
@@ -575,7 +724,11 @@
         "Japanese"
       ],
       "quick": false,
-      "noProtein": null
+      "noProtein": null,
+      "recipe": [
+        "pork-tonkatsu",
+        "https://www.seriouseats.com/tonkatsu-chicken-pork-katsu-japanese-breaded-cutlets-recipe"
+      ]
     },
     {
       "id": "bratwurst",
@@ -617,7 +770,11 @@
         "hearty"
       ],
       "quick": false,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "lentils-kielbasa",
+        "https://www.thekitchn.com/sausage-lentil-soup-267145"
+      ]
     },
     {
       "id": "red-beans-rice",
@@ -631,7 +788,11 @@
         "batch-friendly"
       ],
       "quick": false,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "red-beans-rice",
+        "https://www.seriouseats.com/new-orleans-style-red-beans-rice-recipe"
+      ]
     },
     {
       "id": "sausage-ragu",
@@ -645,7 +806,11 @@
         "Italian"
       ],
       "quick": false,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "sausage-ragu",
+        "https://www.thekitchn.com/sausage-pasta-recipe-23411736"
+      ]
     },
     {
       "id": "blts",
@@ -673,7 +838,12 @@
         "seared"
       ],
       "quick": true,
-      "noProtein": null
+      "noProtein": null,
+      "recipe": [
+        "tuna-steaks",
+        "https://www.thekitchn.com/tuna-steak-recipe-23736693",
+        "https://www.thekitchn.com/grilled-tuna-steak-recipe-23309982"
+      ]
     },
     {
       "id": "poke-bowls",
@@ -687,7 +857,11 @@
         "build-your-own"
       ],
       "quick": false,
-      "noProtein": null
+      "noProtein": null,
+      "recipe": [
+        "poke-bowls",
+        "https://www.seriouseats.com/ahi-poke-hawaiian-raw-tuna-salad-recipe"
+      ]
     },
     {
       "id": "tuna-melts",
@@ -717,7 +891,12 @@
         "build-your-own"
       ],
       "quick": false,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "taco-night",
+        "https://www.thekitchn.com/taco-recipe-23655411",
+        "https://www.halfbakedharvest.com/rolled-chipotle-beef-tacos/"
+      ]
     },
     {
       "id": "fajita-bowls",
@@ -732,7 +911,11 @@
         "build-your-own"
       ],
       "quick": false,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "fajita-bowls",
+        "https://www.halfbakedharvest.com/sheet-pan-chicken-fajitas/"
+      ]
     },
     {
       "id": "gyros",
@@ -835,7 +1018,11 @@
         "light"
       ],
       "quick": true,
-      "noProtein": "ready"
+      "noProtein": "ready",
+      "recipe": [
+        "cauliflower-soup",
+        "https://www.seriouseats.com/creamy-cauliflower-bacon-soup-recipe"
+      ]
     },
     {
       "id": "tortilla-soup",
@@ -849,7 +1036,11 @@
         "toppings"
       ],
       "quick": false,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "tortilla-soup",
+        "https://www.thekitchn.com/tortilla-soup-recipe-23707214"
+      ]
     },
     {
       "id": "pozole",
@@ -864,7 +1055,11 @@
         "Mexican"
       ],
       "quick": false,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "pozole",
+        "https://www.thekitchn.com/pozole-recipe-23706973"
+      ]
     },
     {
       "id": "baked-pasta",
@@ -880,7 +1075,12 @@
         "comfort"
       ],
       "quick": false,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "baked-pasta",
+        "https://www.seriouseats.com/best-baked-ziti-parmesan-cream-recipe",
+        "https://www.seriouseats.com/food-lab-no-boil-baked-ziti-recipe"
+      ]
     },
     {
       "id": "vodka-pasta",
@@ -896,7 +1096,11 @@
         "flexible"
       ],
       "quick": true,
-      "noProtein": "defrost"
+      "noProtein": "defrost",
+      "recipe": [
+        "vodka-pasta",
+        "https://www.seriouseats.com/pasta-with-vodka-sauce"
+      ]
     },
     {
       "id": "butter-paneer",
@@ -910,7 +1114,11 @@
         "vegetarian"
       ],
       "quick": false,
-      "noProtein": null
+      "noProtein": null,
+      "recipe": [
+        "butter-paneer",
+        "https://www.seriouseats.com/easy-butter-paneer-spinach-recipe"
+      ]
     },
     {
       "id": "bulgur-salad",
@@ -927,7 +1135,12 @@
         "flexible"
       ],
       "quick": false,
-      "noProtein": null
+      "noProtein": null,
+      "recipe": [
+        "bulgur-salad",
+        "https://www.thekitchn.com/how-to-make-tabbouleh-cooking-lessons-from-the-kitchn-190556",
+        "https://www.seriouseats.com/tabbouleh-salad-recipe"
+      ]
     },
     {
       "id": "freezer-dinner",

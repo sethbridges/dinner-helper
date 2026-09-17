@@ -1,0 +1,25 @@
+{
+  "id": "pozole",
+  "title": "Pozole rojo",
+  "serves": "6",
+  "time": "2 hours",
+  "sourceName": "The Kitchn",
+  "sourceUrl": "https://www.thekitchn.com/pozole-recipe-23706973",
+  "ingredients": [
+    "2 lb pork shoulder or chicken thighs, chunked",
+    "1 onion",
+    "4 garlic cloves",
+    "2 dried guajillo or ancho chiles, stemmed",
+    "1 tsp cumin",
+    "1 tsp oregano",
+    "2 25-oz cans white hominy, drained",
+    "Salt",
+    "Cabbage, radish, lime, oregano, chips or tostadas"
+  ],
+  "steps": [
+    "Simmer meat with half the onion and garlic in salted water until tender, about 1 1/2 hours. Shred; keep the broth.",
+    "Toast chiles, soak in hot water 15 minutes, then blend with remaining onion, garlic, and spices. Strain into the pot.",
+    "Add hominy and meat. Simmer 20 minutes. Season.",
+    "Serve with a toppings spread."
+  ]
+}

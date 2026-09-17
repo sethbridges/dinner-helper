@@ -1,0 +1,25 @@
+{
+  "id": "meatballs-pasta",
+  "title": "Meatballs and pasta",
+  "serves": "4 to 6",
+  "time": "50 minutes",
+  "sourceName": "Serious Eats",
+  "sourceUrl": "https://www.seriouseats.com/italian-american-beef-pork-meatballs-red-tomato-sauce-recipe",
+  "ingredients": [
+    "1 lb ground beef",
+    "1/2 lb ground pork (or more beef)",
+    "1/2 cup breadcrumbs",
+    "1/3 cup milk",
+    "1 egg",
+    "1/2 cup grated Parmesan",
+    "2 garlic cloves, minced",
+    "Parsley, salt, pepper",
+    "4 cups marinara",
+    "1 lb pasta"
+  ],
+  "steps": [
+    "Mix breadcrumbs and milk. Add meats, egg, Parmesan, garlic, parsley, salt, and pepper.",
+    "Roll golf-ball meatballs. Brown in oil, then simmer in marinara 20 minutes.",
+    "Boil pasta. Toss with sauce and meatballs. More Parmesan on top."
+  ]
+}

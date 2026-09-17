@@ -1,0 +1,30 @@
+{
+  "id": "butter-chicken",
+  "title": "Butter chicken",
+  "serves": "4",
+  "time": "50 minutes",
+  "sourceName": "The Kitchn",
+  "sourceUrl": "https://www.thekitchn.com/butter-chicken-recipe-23700240",
+  "ingredients": [
+    "1 1/2 lb boneless chicken thighs, cubed",
+    "1 cup yogurt",
+    "2 tsp garam masala, divided",
+    "1 tsp turmeric",
+    "4 garlic cloves, minced, divided",
+    "1 inch ginger, grated, divided",
+    "3 tbsp butter",
+    "1 onion, chopped",
+    "1 tsp cumin",
+    "1 15-oz can tomato sauce",
+    "1/2 cup cream",
+    "Salt",
+    "Rice and naan"
+  ],
+  "steps": [
+    "Marinate chicken in yogurt, 1 tsp garam masala, turmeric, half the garlic and ginger, and salt for 30 minutes.",
+    "Brown chicken in a little oil; set aside.",
+    "Melt butter, cook onion until soft, then add remaining garlic, ginger, cumin, and garam masala.",
+    "Stir in tomato sauce and simmer 10 minutes. Add cream and chicken; simmer until thick and cooked through.",
+    "Serve with rice and naan."
+  ]
+}

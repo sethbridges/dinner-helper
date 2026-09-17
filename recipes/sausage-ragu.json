@@ -1,0 +1,23 @@
+{
+  "id": "sausage-ragu",
+  "title": "Sausage ragù",
+  "serves": "4",
+  "time": "45 minutes",
+  "sourceName": "The Kitchn",
+  "sourceUrl": "https://www.thekitchn.com/sausage-pasta-recipe-23411736",
+  "ingredients": [
+    "1 lb Italian sausage, casings removed",
+    "1 onion, chopped",
+    "2 garlic cloves",
+    "1/2 tsp fennel seed, optional",
+    "1 28-oz can crushed tomatoes",
+    "Salt and pepper",
+    "1 lb rigatoni",
+    "Parmesan and parsley"
+  ],
+  "steps": [
+    "Brown sausage, breaking it up. Add onion, then garlic and fennel seed.",
+    "Add tomatoes and simmer 20 minutes.",
+    "Boil pasta; toss with sauce, a splash of pasta water, Parmesan, and parsley."
+  ]
+}

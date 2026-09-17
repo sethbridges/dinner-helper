@@ -1,0 +1,26 @@
+{
+  "id": "red-beans-rice",
+  "title": "Red beans and rice",
+  "serves": "6",
+  "time": "2 1/2 hours",
+  "sourceName": "Serious Eats",
+  "sourceUrl": "https://www.seriouseats.com/new-orleans-style-red-beans-rice-recipe",
+  "ingredients": [
+    "1 lb dried red kidney beans, soaked, or 3 cans, drained",
+    "12 oz andouille or smoked sausage, sliced",
+    "1 onion, 1 green pepper, 2 celery stalks, chopped",
+    "4 garlic cloves",
+    "1 tsp thyme",
+    "1 tsp paprika",
+    "Bay leaf",
+    "6 cups broth or water",
+    "Salt, pepper, cayenne",
+    "Rice",
+    "Hot sauce"
+  ],
+  "steps": [
+    "Brown sausage. Add trinity vegetables and garlic; cook until soft.",
+    "Add beans, spices, and liquid. Simmer until creamy, 1 1/2–2 hours for dried (30 minutes for canned, mash some beans).",
+    "Season. Serve over rice with hot sauce."
+  ]
+}

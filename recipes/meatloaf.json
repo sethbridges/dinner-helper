@@ -1,0 +1,26 @@
+{
+  "id": "meatloaf",
+  "title": "Classic meatloaf",
+  "serves": "6",
+  "time": "1 hour 15 minutes",
+  "sourceName": "The Kitchn",
+  "sourceUrl": "https://www.thekitchn.com/traditional-meatloaf-recipe-23405988",
+  "ingredients": [
+    "2 lb ground beef (or meatloaf mix)",
+    "1 small onion, grated",
+    "2 garlic cloves, minced",
+    "1 cup breadcrumbs",
+    "1/2 cup milk",
+    "2 eggs",
+    "2 tbsp Worcestershire, divided",
+    "1/2 cup ketchup, divided",
+    "1 tsp salt and 1/2 tsp pepper",
+    "2 tbsp brown sugar"
+  ],
+  "steps": [
+    "Heat oven to 350°F. Mix breadcrumbs and milk; rest 5 minutes.",
+    "Add beef, onion, garlic, eggs, 1 tbsp Worcestershire, 1/4 cup ketchup, salt, and pepper. Mix gently.",
+    "Form a loaf on a sheet pan. Mix remaining ketchup, Worcestershire, and brown sugar; spread on top.",
+    "Bake until 160°F, 55–70 minutes. Rest 10 minutes."
+  ]
+}

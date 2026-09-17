@@ -1,0 +1,25 @@
+{
+  "id": "carne-asada",
+  "title": "Carne asada",
+  "serves": "4 to 6",
+  "time": "30 minutes plus marinade",
+  "sourceName": "Serious Eats",
+  "sourceUrl": "https://www.seriouseats.com/carne-asada-food-lab-recipe-kenji",
+  "ingredients": [
+    "2 lb skirt or flank steak",
+    "1/4 cup orange juice",
+    "1/4 cup lime juice",
+    "3 tbsp oil",
+    "4 garlic cloves",
+    "1 jalapeño, chopped",
+    "1 tsp cumin",
+    "1 tsp oregano",
+    "Salt",
+    "Tortillas, rice, salsa, cilantro"
+  ],
+  "steps": [
+    "Blend citrus, oil, garlic, jalapeño, cumin, oregano, and salt. Marinate steak 1–4 hours.",
+    "Grill over high heat until charred, about medium, 3–5 minutes per side.",
+    "Rest 10 minutes. Slice against the grain. Serve with tortillas and sides."
+  ]
+}

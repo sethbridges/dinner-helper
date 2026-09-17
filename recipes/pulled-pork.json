@@ -1,0 +1,23 @@
+{
+  "id": "pulled-pork",
+  "title": "Pulled-pork sandwiches",
+  "serves": "8",
+  "time": "5 hours",
+  "sourceName": "The Kitchn",
+  "sourceUrl": "https://www.thekitchn.com/how-to-make-pulled-pork-in-the-slow-cooker-232724",
+  "ingredients": [
+    "4–5 lb pork shoulder",
+    "2 tbsp brown sugar",
+    "1 tbsp salt",
+    "1 tbsp paprika",
+    "1 tsp garlic powder",
+    "1 tsp black pepper",
+    "1/2 cup cider vinegar",
+    "Buns, slaw, pickles"
+  ],
+  "steps": [
+    "Rub pork with sugar and spices. Roast at 300°F until shreddable, 4–5 hours, or slow-cook on low 8–10 hours.",
+    "Shred, mixing with pan juices and vinegar.",
+    "Serve on buns with slaw and pickles."
+  ]
+}

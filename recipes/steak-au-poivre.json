@@ -1,0 +1,27 @@
+{
+  "id": "steak-au-poivre",
+  "title": "Steak au poivre",
+  "serves": "4",
+  "time": "30 minutes",
+  "sourceName": "Serious Eats",
+  "sourceUrl": "https://www.seriouseats.com/steak-au-poivre",
+  "ingredients": [
+    "4 steaks (filet, strip, or similar)",
+    "2 tbsp whole black peppercorns, crushed",
+    "Salt",
+    "1 tbsp oil",
+    "1 tbsp butter",
+    "1 shallot, minced",
+    "2 tbsp brandy or extra broth",
+    "3/4 cup beef or chicken broth",
+    "1/2 cup cream",
+    "1 tsp Dijon",
+    "Fries or mashed potatoes"
+  ],
+  "steps": [
+    "Salt steaks. Press crushed pepper onto one or both sides.",
+    "Sear in hot oil, then butter-baste, until desired doneness. Rest.",
+    "In the pan, cook shallot. Add brandy, then broth; reduce. Add cream and Dijon; simmer until saucy.",
+    "Spoon over steaks."
+  ]
+}

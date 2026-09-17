@@ -1,0 +1,26 @@
+{
+  "id": "bolognese",
+  "title": "Bolognese",
+  "serves": "6",
+  "time": "2 hours",
+  "sourceName": "Serious Eats",
+  "sourceUrl": "https://www.seriouseats.com/the-best-slow-cooked-bolognese-sauce-recipe",
+  "ingredients": [
+    "2 tbsp olive oil",
+    "1 onion, 1 carrot, 1 celery stalk, minced",
+    "1 lb ground beef",
+    "1/2 lb ground pork",
+    "2 tbsp tomato paste",
+    "1/2 cup milk",
+    "1/2 cup white or red wine",
+    "1 28-oz can crushed tomatoes",
+    "Salt, pepper, nutmeg",
+    "Pasta and Parmesan"
+  ],
+  "steps": [
+    "Cook vegetables in oil until soft. Add meats and brown.",
+    "Stir in tomato paste, then milk, then wine. Simmer until mostly dry.",
+    "Add tomatoes and a pinch of nutmeg. Simmer gently 1–1 1/2 hours, adding water if needed.",
+    "Toss with pasta and Parmesan."
+  ]
+}

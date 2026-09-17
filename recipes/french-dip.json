@@ -1,0 +1,21 @@
+{
+  "id": "french-dip",
+  "title": "French dip sandwiches",
+  "serves": "4",
+  "time": "25 minutes",
+  "sourceName": "Serious Eats",
+  "sourceUrl": "https://www.seriouseats.com/french-dip-sandwich-recipe-8605324",
+  "ingredients": [
+    "1 lb sliced roast beef",
+    "2 cups beef broth",
+    "1 tsp Worcestershire",
+    "1 onion, optional, sautéed",
+    "Provolone",
+    "4 rolls"
+  ],
+  "steps": [
+    "Simmer broth with Worcestershire for jus. Keep hot.",
+    "Warm beef in a little jus. Fill rolls with beef, onion, and cheese.",
+    "Toast until cheese melts. Serve with bowls of jus."
+  ]
+}

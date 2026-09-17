@@ -1,0 +1,22 @@
+{
+  "id": "pork-tonkatsu",
+  "title": "Pork tonkatsu",
+  "serves": "4",
+  "time": "35 minutes",
+  "sourceName": "Serious Eats",
+  "sourceUrl": "https://www.seriouseats.com/tonkatsu-chicken-pork-katsu-japanese-breaded-cutlets-recipe",
+  "ingredients": [
+    "4 boneless pork chops, pounded 1/2 inch",
+    "Salt and pepper",
+    "1/2 cup flour",
+    "2 eggs, beaten",
+    "2 cups panko",
+    "Oil for frying",
+    "Rice, shredded cabbage, tonkatsu sauce"
+  ],
+  "steps": [
+    "Season pork. Flour, egg, then panko.",
+    "Fry in 1/2 inch oil until golden and 145°F, about 3 minutes per side.",
+    "Rest, slice, and serve with rice, cabbage, and sauce."
+  ]
+}

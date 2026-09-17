@@ -1,0 +1,27 @@
+{
+  "id": "vodka-pasta",
+  "title": "Pasta alla vodka",
+  "serves": "4",
+  "time": "30 minutes",
+  "sourceName": "Serious Eats",
+  "sourceUrl": "https://www.seriouseats.com/pasta-with-vodka-sauce",
+  "ingredients": [
+    "1 lb short pasta",
+    "3 tbsp butter",
+    "1 small onion, diced",
+    "3 garlic cloves, sliced",
+    "Pinch red pepper flakes",
+    "1/4 cup tomato paste",
+    "1 14-oz can tomatoes, crushed by hand",
+    "1/4 cup vodka",
+    "3/4 cup cream",
+    "Parmesan",
+    "Optional cooked chicken or sausage"
+  ],
+  "steps": [
+    "Cook onion in butter; add garlic and pepper flakes. Stir in tomato paste until dark.",
+    "Add tomatoes; simmer 8 minutes. Add vodka; simmer 1 minute, then cream.",
+    "Boil pasta until just shy of done. Finish in the sauce with pasta water and Parmesan.",
+    "Fold in meat if using."
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "id": "chicken-piccata",
+  "title": "Chicken piccata",
+  "serves": "4",
+  "time": "30 minutes",
+  "sourceName": "Serious Eats",
+  "sourceUrl": "https://www.seriouseats.com/chicken-piccata-italian-fried-cutlet-recipe",
+  "ingredients": [
+    "1 1/2 lb chicken cutlets, pounded thin",
+    "Salt and pepper",
+    "1/2 cup flour",
+    "3 tbsp olive oil",
+    "3 tbsp butter, divided",
+    "1/2 cup dry white wine or chicken broth",
+    "2 tbsp capers, drained",
+    "2 tbsp lemon juice",
+    "Parsley",
+    "Pasta or bread, for serving"
+  ],
+  "steps": [
+    "Season and flour the cutlets. Shake off extra.",
+    "Sear in oil and 1 tbsp butter until golden, 2–3 minutes per side. Set aside.",
+    "Deglaze pan with wine. Add capers and lemon; simmer 2 minutes. Whisk in remaining butter.",
+    "Return chicken to the pan, coat in sauce, and finish with parsley. Serve with pasta."
+  ]
+}

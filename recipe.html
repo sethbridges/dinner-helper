@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f7f3e9">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="Dinner, Please">
+  <title>Recipe · Dinner, Please</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" href="icon-192.png">
+  <style>
+    :root {
+      --ink: #20332d;
+      --muted: #65746f;
+      --paper: #f7f3e9;
+      --card: #fffdf8;
+      --green: #285f4b;
+      --green-dark: #194333;
+      --sage: #dbe7dc;
+      --orange: #e66a3c;
+      --line: rgba(32, 51, 45, .13);
+    }
+    * { box-sizing: border-box; }
+    html { background: var(--paper); }
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 100% 0, rgba(244,201,93,.32), transparent 33%),
+        radial-gradient(circle at -5% 28%, rgba(219,231,220,.9), transparent 30%),
+        var(--paper);
+      font-family: ui-rounded, "SF Pro Rounded", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: var(--green); }
+    .app {
+      width: min(100%, 560px);
+      min-height: 100dvh;
+      margin: 0 auto;
+      padding: calc(22px + env(safe-area-inset-top)) 18px calc(28px + env(safe-area-inset-bottom));
+    }
+    .back {
+      display: inline-flex; align-items: center; gap: 6px; margin-bottom: 18px;
+      color: var(--green); font-weight: 800; font-size: 14px; text-decoration: none;
+    }
+    .eyebrow {
+      margin: 0 0 5px; color: var(--orange); font-size: 12px; font-weight: 850;
+      letter-spacing: .12em; text-transform: uppercase;
+    }
+    h1 {
+      margin: 0 0 8px; font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(28px, 8vw, 40px); line-height: 1.05; letter-spacing: -.03em;
+    }
+    .meta { margin: 0 0 18px; color: var(--muted); font-size: 14px; }
+    .source {
+      display: block; margin-top: 10px; padding: 12px 14px; border: 1px solid var(--line);
+      border-radius: 14px; background: rgba(255,253,248,.78); font-size: 14px; line-height: 1.4;
+    }
+    .source a { font-weight: 800; text-decoration: none; }
+    .source a:hover { text-decoration: underline; }
+    h2 {
+      margin: 22px 0 10px; font-size: 14px; text-transform: uppercase;
+      letter-spacing: .08em; color: var(--muted);
+    }
+    ul, ol { margin: 0; padding-left: 1.15em; }
+    li { margin: 0 0 8px; line-height: 1.45; }
+    .card {
+      padding: 16px 18px; border: 1px solid var(--line); border-radius: 18px;
+      background: var(--card);
+    }
+    .empty { color: var(--muted); line-height: 1.45; }
+  </style>
+</head>
+<body>
+  <main class="app">
+    <a class="back" href="./index.html">← Dinner, Please</a>
+    <div id="recipe">
+      <p class="empty">Loading recipe…</p>
+    </div>
+  </main>
+  <script>
+    function escapeHtml(value) {
+      return String(value).replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+    }
+    const params = new URLSearchParams(location.search);
+    const id = (params.get('id') || '').trim();
+    const box = document.getElementById('recipe');
+
+    function renderError(message) {
+      box.innerHTML = `<p class="empty">${escapeHtml(message)}</p>`;
+    }
+
+    if (!/^[a-z0-9-]+$/.test(id)) {
+      renderError('That recipe link is missing or invalid.');
+    } else {
+      fetch(`./recipes/${encodeURIComponent(id)}.json`, {cache: 'no-store'})
+        .then(response => {
+          if (!response.ok) throw new Error('missing');
+          return response.json();
+        })
+        .then(recipe => {
+          const title = recipe.title || 'Recipe';
+          document.title = `${title} · Dinner, Please`;
+          const bits = [recipe.serves ? `Serves ${recipe.serves}` : '', recipe.time || ''].filter(Boolean);
+          const ingredients = Array.isArray(recipe.ingredients) ? recipe.ingredients : [];
+          const steps = Array.isArray(recipe.steps) ? recipe.steps : [];
+          const sourceName = recipe.sourceName || 'Original recipe';
+          const sourceUrl = typeof recipe.sourceUrl === 'string' ? recipe.sourceUrl : '';
+          box.innerHTML = `
+            <p class="eyebrow">Ad-free recipe</p>
+            <h1>${escapeHtml(title)}</h1>
+            ${bits.length ? `<p class="meta">${escapeHtml(bits.join(' · '))}</p>` : ''}
+            ${sourceUrl ? `<p class="source">From <a href="${escapeHtml(sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(sourceName)}</a></p>` : ''}
+            <section class="card">
+              <h2>Ingredients</h2>
+              <ul>${ingredients.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+            </section>
+            <section>
+              <h2>Steps</h2>
+              <ol>${steps.map(item => `<li>${escapeHtml(item)}</li>`).join('')}</ol>
+            </section>
+          `;
+        })
+        .catch(() => renderError('I couldn’t load that recipe. Check that recipes/' + id + '.json is in the project.'));
+    }
+  </script>
+</body>
+</html>

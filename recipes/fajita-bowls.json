@@ -1,0 +1,25 @@
+{
+  "id": "fajita-bowls",
+  "title": "Fajita bowls",
+  "serves": "4",
+  "time": "35 minutes",
+  "sourceName": "Half Baked Harvest",
+  "sourceUrl": "https://www.halfbakedharvest.com/sheet-pan-chicken-fajitas/",
+  "ingredients": [
+    "1 1/2 lb chicken or steak strips",
+    "3 bell peppers, sliced",
+    "1 onion, sliced",
+    "2 tbsp oil",
+    "2 tsp chili powder",
+    "1 tsp cumin",
+    "1 tsp garlic powder",
+    "Salt",
+    "Rice",
+    "Lime, cilantro, salsa, sour cream"
+  ],
+  "steps": [
+    "Toss meat and vegetables with oil and spices.",
+    "Roast on a hot sheet pan at 425°F until browned and cooked, 18–25 minutes, or sear in a skillet.",
+    "Serve over rice with lime and toppings."
+  ]
+}

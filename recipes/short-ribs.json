@@ -1,0 +1,25 @@
+{
+  "id": "short-ribs",
+  "title": "Red wine braised short ribs",
+  "serves": "4 to 6",
+  "time": "3 1/2 hours",
+  "sourceName": "Serious Eats",
+  "sourceUrl": "https://www.seriouseats.com/red-wine-braised-beef-short-ribs-recipe",
+  "ingredients": [
+    "4 lb bone-in short ribs",
+    "Salt and pepper",
+    "2 tbsp oil",
+    "1 onion, 1 carrot, 1 celery stalk, chopped",
+    "2 tbsp tomato paste",
+    "2 cups red wine",
+    "2 cups beef broth",
+    "Thyme and bay leaf",
+    "Mashed potatoes"
+  ],
+  "steps": [
+    "Heat oven to 300°F. Season and brown ribs well. Set aside.",
+    "Cook vegetables until browned. Add tomato paste, then wine; reduce by half.",
+    "Add broth, herbs, and ribs. Cover and braise until tender, about 3 hours.",
+    "Strain and reduce sauce if needed. Serve over mashed potatoes."
+  ]
+}

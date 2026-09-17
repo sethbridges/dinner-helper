@@ -1,0 +1,21 @@
+{
+  "id": "cheesesteaks",
+  "title": "Philly cheesesteaks",
+  "serves": "2 to 3",
+  "time": "25 minutes",
+  "sourceName": "Serious Eats",
+  "sourceUrl": "https://www.seriouseats.com/philly-cheesesteak-recipe-7546830",
+  "ingredients": [
+    "1 lb ribeye or skirt steak, sliced very thin (freeze 20 minutes to slice)",
+    "1 onion, diced",
+    "Oil",
+    "Salt and pepper",
+    "6–8 slices provolone",
+    "2–3 hoagie rolls"
+  ],
+  "steps": [
+    "Cook onion in oil until soft and browned. Push aside.",
+    "Add steak in a hot pan; cook quickly, chopping with a spatula. Season.",
+    "Mix with onions. Top with provolone, cover to melt, then stuff into rolls."
+  ]
+}

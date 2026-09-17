@@ -1,0 +1,21 @@
+{
+  "id": "reubens",
+  "title": "Reuben sandwiches",
+  "serves": "4",
+  "time": "25 minutes",
+  "sourceName": "Serious Eats",
+  "sourceUrl": "https://www.seriouseats.com/reuben-sandwich-corned-beef-rye-recipe",
+  "ingredients": [
+    "1 lb sliced corned beef",
+    "8 slices rye bread",
+    "8 slices Swiss",
+    "1 1/2 cups sauerkraut, drained",
+    "Russian or Thousand Island dressing",
+    "Butter"
+  ],
+  "steps": [
+    "Warm corned beef. Warm sauerkraut in a little butter until glossy.",
+    "Butter the outsides of the bread. Spread dressing on the insides.",
+    "Stack beef, sauerkraut, and Swiss. Griddle covered over medium-low until crisp and the cheese melts."
+  ]
+}
